@@ -82,7 +82,6 @@
 		C2AB6CB8287CE5D7000A65DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				C2E54C2028772C8D00919396 /* ViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -98,8 +97,11 @@
 		C2E08E94287B994E0090DD47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2E54C2028772C8D00919396 /* ViewController.swift */,
+				C2AB6CB0287CDC74000A65DF /* QuoteController.swift */,
 				C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */,
 				C2C0CC70287CFB570046DD42 /* QuoteCell.swift */,
+				C2E54C2228772C8D00919396 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,7 +109,6 @@
 		C2E08E95287B995D0090DD47 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C2AB6CB0287CDC74000A65DF /* QuoteController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -140,7 +141,6 @@
 				C2E08E95287B995D0090DD47 /* Controller */,
 				C2E54C1C28772C8D00919396 /* AppDelegate.swift */,
 				C2E54C1E28772C8D00919396 /* SceneDelegate.swift */,
-				C2E54C2228772C8D00919396 /* Main.storyboard */,
 				C2E54C2828772C9000919396 /* Assets.xcassets */,
 				C2E54C2A28772C9000919396 /* LaunchScreen.storyboard */,
 				C2E54C2D28772C9000919396 /* Info.plist */,

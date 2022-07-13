@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import TagListView
 
 class QuoteCell: UITableViewCell {
 
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var tagsView: TagListView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

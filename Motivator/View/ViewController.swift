@@ -13,6 +13,7 @@
 
 import UIKit
 import RxSwift
+import TagListView
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,23 +22,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var quoteController = QuoteController()
     var quoteViewModels = [QuoteViewModel]()
     
-    var url: String = "https://api.quotable.io/random"
-    let cellId = "QuoteCell"
+    var url: String = "https://api.quotable.io/random?tags=technology,famous-quotes"
+//    var url: String = "https://quotable.io/quotes?page=1"
+    let cellId = "quotecellid"
     let nib = UINib(nibName: "QuoteCell", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(nib, forCellReuseIdentifier: "quotecellid")
-        getData(from: "https://api.quotable.io/random")
+        setupNavigationController()
+        tableView.register(nib, forCellReuseIdentifier: cellId)
+        getData(from: url)
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.rowHeight = UITableView.automaticDimension
     }
 }
 
 extension ViewController {
     // MARK: - Table view data source
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return quoteViewModels.count
     }
@@ -45,8 +50,14 @@ extension ViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quotecellid", for: indexPath) as! QuoteCell
 
+        cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
+        cell.layoutIfNeeded()
+        
         cell.contentLabel.text = quoteViewModels[indexPath.row].quoteContent
         cell.authorLabel.text = quoteViewModels[indexPath.row].quoteAuthor
+        quoteViewModels[indexPath.row].quoteTags.forEach() { tags in
+            cell.tagsView.addTag(tags)
+        }
         
         return cell
     }
@@ -89,4 +100,10 @@ extension ViewController {
         })
         task.resume()
     }
+    
+    func setupNavigationController() {
+        self.navigationController?.navigationBar.backgroundColor = .systemBlue
+    }
+    
+    
 }
