@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var quoteController = QuoteController()
     var quoteViewModels = [QuoteViewModel]()
+    var tempTagsArray = [String]()
     
     var url: String = "https://api.quotable.io/random"
     let cellId = "quotecellid"
@@ -59,8 +60,12 @@ extension ViewController {
         
         cell.contentLabel.text = quoteViewModels[indexPath.row].quoteContent
         cell.authorLabel.text = quoteViewModels[indexPath.row].quoteAuthor
-//        cell.tagsView.addTags(quoteViewModels[indexPath.row].quoteTags)
         
+        // Problem is in here //
+        cell.tagsView.removeAllTags()
+        cell.tagsView.addTags(quoteViewModels[indexPath.row].quoteTags)
+        
+       
         return cell
     }
     
@@ -69,6 +74,7 @@ extension ViewController {
     func getRandomQuote(from url: String?) {
         
         assert(url != nil, "URL isn't correct")
+        
         guard let url = url else {
             return
         }
@@ -100,10 +106,13 @@ extension ViewController {
                 self.tableView.reloadData()
             }
             
+            
+            
             print(quoteViewModel.quoteTags)
             
         })
         task.resume()
+        
     }
     
     func setupNavigationController() {
@@ -137,7 +146,7 @@ extension ViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
-            print("getch more data")
+//            print("getch more data")
             getRandomQuote(from: url)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
