@@ -22,8 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var quoteController = QuoteController()
     var quoteViewModels = [QuoteViewModel]()
     
-    var url: String = "https://api.quotable.io/random?tags=technology,famous-quotes"
-//    var url: String = "https://quotable.io/quotes?page=1"
+    var url: String = "https://api.quotable.io/random"
     let cellId = "quotecellid"
     let nib = UINib(nibName: "QuoteCell", bundle: nil)
     
@@ -31,12 +30,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         setupNavigationController()
-        tableView.register(nib, forCellReuseIdentifier: cellId)
-        getData(from: url)
-        tableView.dataSource = self
-        tableView.delegate = self
+        setupTableView()
         
-        tableView.rowHeight = UITableView.automaticDimension
+        getRandomQuote(from: url)
+        getRandomQuote(from: url)
+        getRandomQuote(from: url)
+        getRandomQuote(from: url)
+        getRandomQuote(from: url)
+        getRandomQuote(from: url)
+        getRandomQuote(from: url)
+        getRandomQuote(from: url)
+        getRandomQuote(from: url)
+        
     }
 }
 
@@ -49,22 +54,19 @@ extension ViewController {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quotecellid", for: indexPath) as! QuoteCell
-
         cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
         cell.layoutIfNeeded()
         
         cell.contentLabel.text = quoteViewModels[indexPath.row].quoteContent
         cell.authorLabel.text = quoteViewModels[indexPath.row].quoteAuthor
-        quoteViewModels[indexPath.row].quoteTags.forEach() { tags in
-            cell.tagsView.addTag(tags)
-        }
+//        cell.tagsView.addTags(quoteViewModels[indexPath.row].quoteTags)
         
         return cell
     }
     
     // Get data from an API
     
-    func getData(from url: String?) {
+    func getRandomQuote(from url: String?) {
         
         assert(url != nil, "URL isn't correct")
         guard let url = url else {
@@ -93,9 +95,12 @@ extension ViewController {
             
             let quoteViewModel = QuoteViewModel(quote: quote!)
             self.quoteViewModels.append(quoteViewModel)
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            
+            print(quoteViewModel.quoteTags)
             
         })
         task.resume()
@@ -105,5 +110,38 @@ extension ViewController {
         self.navigationController?.navigationBar.backgroundColor = .systemBlue
     }
     
+    func setupTableView() {
+        tableView.register(nib, forCellReuseIdentifier: cellId)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+    }
     
+    func getUniqueElements(from array: [String]) -> [String] {
+      //Create an empty Set to track unique items
+      var set = Set<String>()
+      let result = array.filter {
+        guard !set.contains($0) else {
+          //If the set already contains this object, return false
+          //so we skip it
+          return false
+        }
+        //Add this item to the set since it will now be in the array
+        set.insert($0)
+        //Return true so that filtered array will contain this item.
+        return true
+      }
+      return result
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
+            print("getch more data")
+            getRandomQuote(from: url)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
