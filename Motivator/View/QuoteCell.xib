@@ -62,27 +62,24 @@
                         <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bbK-Wg-vsc">
-                        <rect key="frame" x="8" y="138" width="81" height="20"/>
+                        <rect key="frame" x="8" y="138" width="75.5" height="20"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="251" image="highlighter" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DNx-Pc-fQ4">
                                 <rect key="frame" x="0.0" y="-1.5" width="21.5" height="20"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pin-t3-z82">
-                                <rect key="frame" x="29.5" y="-0.5" width="51.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHn-ly-q6d">
+                                <rect key="frame" x="29.5" y="0.0" width="46" height="20"/>
+                                <state key="normal" title="Author"/>
+                                <connections>
+                                    <action selector="onAuthorButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ojv-Qw-0Sa"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="Pin-t3-z82" firstAttribute="top" secondItem="bbK-Wg-vsc" secondAttribute="top" constant="-0.5" id="Kby-Vv-jbL"/>
-                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="UhJ-n5-rKt" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="3CE-NS-mcJ"/>
                     <constraint firstItem="bbK-Wg-vsc" firstAttribute="top" secondItem="huk-77-4i4" secondAttribute="bottom" constant="14" id="BAm-sU-gWd"/>
-                    <constraint firstItem="Pin-t3-z82" firstAttribute="top" secondItem="huk-77-4i4" secondAttribute="bottom" constant="13.5" id="CV5-Nc-GUq"/>
                     <constraint firstItem="UhJ-n5-rKt" firstAttribute="leading" secondItem="bbK-Wg-vsc" secondAttribute="leading" id="Mvf-Df-29d"/>
                     <constraint firstItem="bbK-Wg-vsc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="SVa-U2-eSg"/>
                     <constraint firstItem="huk-77-4i4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="X1i-Cc-ybr"/>
@@ -95,7 +92,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="authorLabel" destination="Pin-t3-z82" id="ja5-BW-S99"/>
+                <outlet property="authorButton" destination="EHn-ly-q6d" id="CtU-eg-F57"/>
                 <outlet property="contentLabel" destination="huk-77-4i4" id="LSH-o7-6Yx"/>
                 <outlet property="tagsView" destination="UhJ-n5-rKt" id="hZ2-yn-ivu"/>
             </connections>

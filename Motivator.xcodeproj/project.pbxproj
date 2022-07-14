@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4916FAD063867B3C07459A0E /* Pods_Motivator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8F78353E58D4C6043DD939 /* Pods_Motivator.framework */; };
+		C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */; };
+		C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */; };
 		C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB6CB0287CDC74000A65DF /* QuoteController.swift */; };
 		C2AB6CB5287CDE79000A65DF /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */; };
 		C2C0CC71287CFB570046DD42 /* QuoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		3F8F78353E58D4C6043DD939 /* Pods_Motivator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Motivator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		841C50443A53E33225D75847 /* Pods-Motivator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motivator.release.xcconfig"; path = "Target Support Files/Pods-Motivator/Pods-Motivator.release.xcconfig"; sourceTree = "<group>"; };
+		C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = OscarWilde.jpeg; path = ../../../../../Desktop/OscarWilde.jpeg; sourceTree = "<group>"; };
+		C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorPageViewController.swift; sourceTree = "<group>"; };
 		C2AB6CB0287CDC74000A65DF /* QuoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteController.swift; sourceTree = "<group>"; };
 		C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuoteCell.xib; sourceTree = "<group>"; };
@@ -71,6 +75,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C229B8C2287F64E9006EDAEC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C2AB6CB3287CDE56000A65DF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				C2E54C2028772C8D00919396 /* ViewController.swift */,
+				C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */,
 				C2AB6CB0287CDC74000A65DF /* QuoteController.swift */,
 				C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */,
 				C2C0CC70287CFB570046DD42 /* QuoteCell.swift */,
@@ -134,6 +147,7 @@
 		C2E54C1B28772C8C00919396 /* Motivator */ = {
 			isa = PBXGroup;
 			children = (
+				C229B8C2287F64E9006EDAEC /* Resources */,
 				C2AB6CB8287CE5D7000A65DF /* Screens */,
 				C2AB6CB3287CDE56000A65DF /* ViewModel */,
 				C2E08E8F287B92FF0090DD47 /* Model */,
@@ -209,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2C0CC71287CFB570046DD42 /* QuoteCell.xib in Resources */,
+				C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */,
 				C2E54C2C28772C9000919396 /* LaunchScreen.storyboard in Resources */,
 				C2E54C2928772C9000919396 /* Assets.xcassets in Resources */,
 				C2E54C2428772C8D00919396 /* Main.storyboard in Resources */,
@@ -267,6 +282,7 @@
 				C2C0CC72287CFB570046DD42 /* QuoteCell.swift in Sources */,
 				C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */,
 				C2AB6CB5287CDE79000A65DF /* QuoteViewModel.swift in Sources */,
+				C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */,
 				C2E54C2128772C8D00919396 /* ViewController.swift in Sources */,
 				C2E54C1D28772C8D00919396 /* AppDelegate.swift in Sources */,
 				C2E54C1F28772C8D00919396 /* SceneDelegate.swift in Sources */,

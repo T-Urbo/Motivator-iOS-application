@@ -11,19 +11,25 @@ import TagListView
 class QuoteCell: UITableViewCell {
 
     @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var authorButton: UIButton!
     @IBOutlet weak var tagsView: TagListView!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    @IBAction func onAuthorButtonClick(_ sender: UIButton) {
+        
+    }
+    
+    
+}
+
+protocol QuoteCellDelegate {
+    func sendURL(url url: String)
 }

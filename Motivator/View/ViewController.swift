@@ -15,7 +15,15 @@ import UIKit
 import RxSwift
 import TagListView
 
+enum URLSessionErrors: Error {
+    case invalidURL
+}
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+//    func sendURL(url: String) {
+//        <#code#>
+//    }
+//
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,21 +35,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let cellId = "quotecellid"
     let nib = UINib(nibName: "QuoteCell", bundle: nil)
     
+    let viewControllerSegueIdentifier = "show_author_view_controller"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationController()
         setupTableView()
         
-        getRandomQuote(from: url)
-        getRandomQuote(from: url)
-        getRandomQuote(from: url)
-        getRandomQuote(from: url)
-        getRandomQuote(from: url)
-        getRandomQuote(from: url)
-        getRandomQuote(from: url)
-        getRandomQuote(from: url)
-        getRandomQuote(from: url)
+//        getQuote(from: url)
+//        getQuote(from: url)
+//        getQuote(from: url)
+//        getQuote(from: url)
+//        getQuote(from: url)
+//        getQuote(from: url)
+//        getQuote(from: url)
+//        getQuote(from: url)
+//        getQuote(from: url)
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        getQuoteByAuthor(authorName: "Albert Einstein")
+        
         
     }
 }
@@ -59,7 +79,7 @@ extension ViewController {
         cell.layoutIfNeeded()
         
         cell.contentLabel.text = quoteViewModels[indexPath.row].quoteContent
-        cell.authorLabel.text = quoteViewModels[indexPath.row].quoteAuthor
+        cell.authorButton.setTitle(quoteViewModels[indexPath.row].quoteAuthor, for: .normal)
         
         // Problem is in here //
         cell.tagsView.removeAllTags()
@@ -71,7 +91,7 @@ extension ViewController {
     
     // Get data from an API
     
-    func getRandomQuote(from url: String?) {
+    func getQuote(from url: String?) {
         
         assert(url != nil, "URL isn't correct")
         
@@ -105,14 +125,45 @@ extension ViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            
-            
-            
-            print(quoteViewModel.quoteTags)
-            
         })
         task.resume()
+    }
+    
+    func getQuoteByAuthor(authorName name: String)  {
         
+        let url = "https://quotable.io/quotes?author=" + name.replacingOccurrences(of: " ", with: "-").lowercased()
+        
+        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
+            
+            guard let data = data, error == nil else {
+                print("JSON Parsing error!")
+                return
+            }
+            
+            var quoteByAuthor: QuoteByAuthor?
+            
+            do {
+                quoteByAuthor = try JSONDecoder().decode(QuoteByAuthor.self, from: data)
+            }
+            catch {
+                print(String(describing: error))
+            }
+            
+            guard quoteByAuthor != nil else {
+                return
+            }
+            
+            for i in 0...(quoteByAuthor?.results.count)! - 1 {
+                let quoteViewModel = QuoteViewModel(quote: (quoteByAuthor?.results[i])!)
+                self.quoteViewModels.append(quoteViewModel)
+            }
+            
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
+        task.resume()
     }
     
     func setupNavigationController() {
@@ -147,10 +198,19 @@ extension ViewController {
         let position = scrollView.contentOffset.y
         if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
 //            print("getch more data")
-            getRandomQuote(from: url)
+            getQuote(from: url)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == viewControllerSegueIdentifier,
+            let destination = segue.destination as? AuthorPageViewController,
+            let quoteIndex = tableView.indexPathForSelectedRow {
+            destination.tempURL = "https://quotable.io/quotes?author=albert-einstein"
+        }
+    }
 }
+

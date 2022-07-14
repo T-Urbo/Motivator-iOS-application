@@ -11,6 +11,16 @@ struct Quote: Decodable {
     var _id: String = ""
     var content: String = ""
     var author: String = ""
-    var tags: [String] = []
+    var authorSlug: String = ""
     var length: Int = 0
+    var tags: [String] = []
+}
+
+struct QuoteByAuthor: Decodable {
+    var count: Int
+    var totalCount: Int
+    var page: Int
+    var totalPages: Int
+    var lastItemIndex: Int
+    var results: [Quote]
 }
