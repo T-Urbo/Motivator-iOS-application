@@ -8,7 +8,7 @@
 //TODO: Choose frameworks -> RxSwift, RxCocoa
 //      Decide about the architecture -> MVVM
 //      Find an API source of quotes: quotable.io
-
+//      Make a segue to AuthorPageViewController if authorButton(QuoteCell.swift) was clicked
 
 
 import UIKit
@@ -20,10 +20,11 @@ enum URLSessionErrors: Error {
 }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-//    func sendURL(url: String) {
-//        <#code#>
-//    }
-//
+    
+    func authorButtonTapped(_ cell: QuoteCell) {
+        let indexPath = self.tableView.indexPath(for: cell)
+    }
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -43,26 +44,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         setupNavigationController()
         setupTableView()
         
-//        getQuote(from: url)
-//        getQuote(from: url)
-//        getQuote(from: url)
-//        getQuote(from: url)
-//        getQuote(from: url)
-//        getQuote(from: url)
-//        getQuote(from: url)
-//        getQuote(from: url)
-//        getQuote(from: url)
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        getQuoteByAuthor(authorName: "Albert Einstein")
-        
-        
+        getQuote(from: url)
+        getQuote(from: url)
+        getQuote(from: url)
+        getQuote(from: url)
+        getQuote(from: url)
+        getQuote(from: url)
+        getQuote(from: url)
+        getQuote(from: url)
+        getQuote(from: url)
     }
 }
 
@@ -84,12 +74,23 @@ extension ViewController {
         // Problem is in here //
         cell.tagsView.removeAllTags()
         cell.tagsView.addTags(quoteViewModels[indexPath.row].quoteTags)
+        cell.authorButton.tag = indexPath.row
+        cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
         
-       
         return cell
     }
     
-    // Get data from an API
+    @objc func onAuthorButtonClick(_ button: UIButton) {
+        print("the button with tag: \(button.tag) clicked in cell!")
+        if let authorpagevc = storyboard?.instantiateViewController(identifier: "apvc") as? AuthorPageViewController {
+            authorpagevc.authorName = (button.titleLabel?.text!)!
+            self.navigationController?.pushViewController(authorpagevc, animated: true)
+            self.present(authorpagevc, animated: true, completion: nil)
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
     func getQuote(from url: String?) {
         
@@ -167,6 +168,7 @@ extension ViewController {
     }
     
     func setupNavigationController() {
+        
         self.navigationController?.navigationBar.backgroundColor = .systemBlue
     }
     
@@ -209,7 +211,7 @@ extension ViewController {
         if segue.identifier == viewControllerSegueIdentifier,
             let destination = segue.destination as? AuthorPageViewController,
             let quoteIndex = tableView.indexPathForSelectedRow {
-            destination.tempURL = "https://quotable.io/quotes?author=albert-einstein"
+            destination.authorName = ""
         }
     }
 }

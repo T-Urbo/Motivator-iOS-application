@@ -24,12 +24,7 @@ class QuoteCell: UITableViewCell {
     }
     
     @IBAction func onAuthorButtonClick(_ sender: UIButton) {
-        
     }
     
     
-}
-
-protocol QuoteCellDelegate {
-    func sendURL(url url: String)
 }

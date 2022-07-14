@@ -8,12 +8,12 @@
 import Foundation
 
 struct Quote: Decodable {
-    var _id: String = ""
-    var content: String = ""
-    var author: String = ""
-    var authorSlug: String = ""
-    var length: Int = 0
-    var tags: [String] = []
+    var _id: String
+    var content: String
+    var author: String
+    var authorSlug: String
+    var length: Int
+    var tags: [String]
 }
 
 struct QuoteByAuthor: Decodable {
@@ -21,6 +21,6 @@ struct QuoteByAuthor: Decodable {
     var totalCount: Int
     var page: Int
     var totalPages: Int
-    var lastItemIndex: Int
+    var lastItemIndex: Int?
     var results: [Quote]
 }
