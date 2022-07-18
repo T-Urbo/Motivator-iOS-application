@@ -64,15 +64,11 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M70-ha-T2j">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                        <rect key="frame" x="0.0" y="278" width="414" height="530"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OscarWilde.jpeg" id="tQy-ki-Bgl">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="274"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="94T-CH-eqt" customClass="QuoteCell" customModule="Motivator" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="302" width="414" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="94T-CH-eqt" id="jz1-RA-8F3">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -81,11 +77,43 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-JV-fxn">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="278"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tQy-ki-Bgl" customClass="AuthorImage" customModule="Motivator" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="167" height="250"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="occupation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOD-hM-gYM">
+                                                <rect key="frame" x="183" y="30" width="85" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="birthplace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Suw-yQ-kz4">
+                                                <rect key="frame" x="183" y="59" width="77" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-oi-Ukp">
+                                                <rect key="frame" x="183" y="88" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="M70-ha-T2j" secondAttribute="trailing" id="MVo-zg-XE4"/>
                                     <constraint firstItem="M70-ha-T2j" firstAttribute="leading" secondItem="1xi-fK-sWA" secondAttribute="leading" id="SiA-Qt-5Ji"/>
-                                    <constraint firstItem="M70-ha-T2j" firstAttribute="top" secondItem="rKw-NH-h9y" secondAttribute="top" id="alF-pE-qIt"/>
+                                    <constraint firstItem="M70-ha-T2j" firstAttribute="top" secondItem="rKw-NH-h9y" secondAttribute="top" constant="278" id="alF-pE-qIt"/>
                                     <constraint firstItem="M70-ha-T2j" firstAttribute="bottom" secondItem="1xi-fK-sWA" secondAttribute="bottom" id="hlK-jt-z86"/>
                                     <constraint firstItem="M70-ha-T2j" firstAttribute="trailing" secondItem="1xi-fK-sWA" secondAttribute="trailing" id="kty-TX-tVK"/>
                                     <constraint firstAttribute="bottom" secondItem="M70-ha-T2j" secondAttribute="bottom" id="sfg-N2-wBW"/>
@@ -105,7 +133,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="fHm-uP-fKd"/>
                     <connections>
+                        <outlet property="authorBioView" destination="CYL-JV-fxn" id="5O7-Or-SOr"/>
                         <outlet property="authorImage" destination="tQy-ki-Bgl" id="dAa-BH-04y"/>
+                        <outlet property="birthDateLabel" destination="d4C-oi-Ukp" id="oAD-fD-b6F"/>
+                        <outlet property="birthplaceLabel" destination="Suw-yQ-kz4" id="eFd-8z-bEC"/>
+                        <outlet property="occupationLabel" destination="jOD-hM-gYM" id="jPU-Zx-50u"/>
                         <outlet property="tableView" destination="M70-ha-T2j" id="rlu-d3-gHm"/>
                     </connections>
                 </viewController>
@@ -133,7 +165,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="OscarWilde.jpeg" width="157.67999267578125" height="231.91200256347656"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

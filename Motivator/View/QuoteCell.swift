@@ -6,6 +6,7 @@
 //
 
 //TODO: Create onTagButttonClick function which shows quotes with selected tag/s
+//      Add quote saving functionality
 
 import UIKit
 import TagListView

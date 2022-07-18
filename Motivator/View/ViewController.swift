@@ -21,11 +21,6 @@ enum URLSessionErrors: Error {
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    func authorButtonTapped(_ cell: QuoteCell) {
-        let indexPath = self.tableView.indexPath(for: cell)
-    }
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     var quoteController = QuoteController()
@@ -161,12 +156,15 @@ extension ViewController {
                 self.quoteViewModels.append(quoteViewModel)
             }
             
-            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         })
         task.resume()
+    }
+    
+    func authorButtonTapped(_ cell: QuoteCell) {
+        let indexPath = self.tableView.indexPath(for: cell)
     }
     
     func setupNavigationController() {
