@@ -17,21 +17,15 @@ class AuthorPageViewController: ViewController {
     var authorName: String = ""
     
     @IBOutlet weak var authorImage: UIImageView!
-    @IBOutlet weak var authorInfo: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
-        
+//        self.navigationController?.title?.write(authorName)
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         print("view was loaded")
-        
+//        authorNameLabel.text = authorName
         getQuoteByAuthor(authorName: authorName)
         getQuoteByAuthor(authorName: authorName)
         getQuoteByAuthor(authorName: authorName)
@@ -41,7 +35,6 @@ class AuthorPageViewController: ViewController {
         getQuoteByAuthor(authorName: authorName)
         getQuoteByAuthor(authorName: authorName)
         getQuoteByAuthor(authorName: authorName)
-        
     }
      
     func setView() {
@@ -68,7 +61,6 @@ class AuthorPageViewController: ViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
-            getQuoteByAuthor(authorName: authorName)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

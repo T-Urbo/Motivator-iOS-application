@@ -5,6 +5,8 @@
 //  Created by Timothey Urbanovich on 12/07/2022.
 //
 
+//TODO: Create onTagButttonClick function which shows quotes with selected tag/s
+
 import UIKit
 import TagListView
 

@@ -84,8 +84,9 @@ extension ViewController {
         print("the button with tag: \(button.tag) clicked in cell!")
         if let authorpagevc = storyboard?.instantiateViewController(identifier: "apvc") as? AuthorPageViewController {
             authorpagevc.authorName = (button.titleLabel?.text!)!
-            self.navigationController?.pushViewController(authorpagevc, animated: true)
+            authorpagevc.title = (button.titleLabel?.text!)!
             self.present(authorpagevc, animated: true, completion: nil)
+            
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -134,6 +135,7 @@ extension ViewController {
         
         let url = "https://quotable.io/quotes?author=" + name.replacingOccurrences(of: " ", with: "-").lowercased()
         
+
         let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
             
             guard let data = data, error == nil else {
@@ -177,6 +179,7 @@ extension ViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.showsVerticalScrollIndicator = false
     }
     
     func getUniqueElements(from array: [String]) -> [String] {
@@ -207,6 +210,8 @@ extension ViewController {
         }
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == viewControllerSegueIdentifier,
             let destination = segue.destination as? AuthorPageViewController,
@@ -215,4 +220,5 @@ extension ViewController {
         }
     }
 }
+
 
