@@ -24,22 +24,36 @@ class AuthorPageViewController: ViewController {
     var language = WikipediaLanguage("en")
     var authorBio = Author(_id: "", bio: "", description: "", link: "", name: "", slug: "", quoteCount: 0)
     lazy var authorUrl = "https://quotable.io/quotes?author=\(authorName.replacingOccurrences(of: " ", with: "-").lowercased())"
-    
-    
+    var isAuthorSaved: Bool = false
     
     @IBOutlet weak var authorImage: AuthorImage!
     @IBOutlet weak var authorBioView: UIView!
     @IBOutlet weak var occupationLabel: UILabel!
     @IBOutlet weak var birthplaceLabel: UILabel!
     @IBOutlet weak var birthDateLabel: UILabel!
-    
-//    var authorQuotes = 
-    
-    
+    @IBOutlet weak var saveAuthorButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAuthorPageView()
         getQuotesByAuthor(authorName: authorName)
+    }
+    
+    @IBAction func onSaveAuthorButtonClick(_ sender: Any) {
+        print("button was tapped!!!")
+        isAuthorSaved = !isAuthorSaved
+        print(isAuthorSaved)
+        switch isAuthorSaved {
+        case true:
+            if let image = UIImage(systemName: "bookmark.fill") {
+                saveAuthorButton.setImage(image, for: .normal)
+            }
+            // do core data save to context operation
+        case false:
+            if let image = UIImage(systemName: "bookmark") {
+                saveAuthorButton.setImage(image, for: .normal)
+            }        // do core data delete from context operation
+        }
     }
 }
 
@@ -56,6 +70,8 @@ extension AuthorPageViewController {
         cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
         cell.authorButton.tag = indexPath.row
         cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
+        
+        
         
         // cell.authorButton - try to disable the author button
         
@@ -128,8 +144,6 @@ extension AuthorPageViewController {
                 let range = firstIndexOfDate ..< lastIndexOfDate
                 let lifetime = self.authorBio.bio
                 self.birthDateLabel.text = String(lifetime[range]).replacingOccurrences(of: "(", with: "")
-//                print(self.authorBio.bio.firstIndex(of: "(")!)
-//                print(self.authorBio.bio.firstIndex(of: ")")!)
             }
         })
         task.resume()
@@ -176,6 +190,8 @@ extension AuthorPageViewController {
         self.occupationLabel.text = ""
         self.birthplaceLabel.text = ""
     }
+    
+    
 }
 
 extension AuthorPageViewController {
@@ -189,9 +205,9 @@ extension AuthorPageViewController {
         let position = scrollView.contentOffset.y
         if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
 //            getQuotesByAuthor(authorName: authorName)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
         }
     }
 }

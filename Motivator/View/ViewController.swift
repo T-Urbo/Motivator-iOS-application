@@ -5,7 +5,7 @@
 //  Created by Timothey Urbanovich on 07/07/2022.
 //
 
-//TODO: Choose frameworks -> RxSwift, RxCocoa
+//TODO: Choose frameworks -> RxSwift, RxCocoa, WikipediaKit, Kingfisher, SideMenu
 //      Decide about the architecture -> MVVM
 //      Find an API source of quotes: quotable.io
 //      Make a segue to AuthorPageViewController if authorButton(QuoteCell.swift) was clicked
@@ -14,14 +14,16 @@
 import UIKit
 import RxSwift
 import TagListView
+import SideMenu
 
 enum URLSessionErrors: Error {
     case invalidURL
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TagListViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     
     var quoteController = QuoteController()
     //    var quoteViewModels = [QuoteViewModel]()
@@ -33,12 +35,8 @@ class ViewController: UIViewController {
     let nib = UINib(nibName: "QuoteCell", bundle: nil)
     
     let viewControllerSegueIdentifier = "show_author_view_controller"
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //        setAuthorPageView()
-        print("viewwillappear 1")
-        //        print(authorBio)
-    }
+
+    private let sideMenu = SideMenuNavigationController(rootViewController: UIViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +52,13 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func onSideMenuButtonClick(_ sender: Any) {
+        present(sideMenu, animated: true)
+    }
+    
+    
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -74,8 +79,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         // Problem is in here //
         cell.tagsView.removeAllTags()
         cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
+        cell.tagsView.delegate = self
+        
         cell.authorButton.tag = indexPath.row
         cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
+        
         
         return cell
     }
@@ -92,6 +100,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             self.tableView.reloadData()
         }
     }
+    
+    func tagClicked(title: String, tagView: TagView, sender: TagListView) {
+        print("tag pressed: \(title), \(sender)")
+    }
         
     func authorButtonTapped(_ cell: QuoteCell) {
         let indexPath = self.tableView.indexPath(for: cell)
@@ -100,6 +112,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func setupNavigationController() {
         
         self.navigationController?.navigationBar.backgroundColor = .systemBlue
+        self.sideMenu.leftSide = true
+        SideMenuManager.default.leftMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
     }
     
     func setupTableView() {
@@ -108,6 +123,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.showsVerticalScrollIndicator = false
+        
     }
     
     func getUniqueElements(from array: [String]) -> [String] {

@@ -16,6 +16,7 @@ class QuoteCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var authorButton: UIButton!
     @IBOutlet weak var tagsView: TagListView!
+//    @IBOutlet weak var likeButton: UIButton!
     
     
     override func awakeFromNib() {
@@ -28,6 +29,4 @@ class QuoteCell: UITableViewCell {
     
     @IBAction func onAuthorButtonClick(_ sender: UIButton) {
     }
-    
-    
 }
