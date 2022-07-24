@@ -19,12 +19,13 @@ enum URLSessionErrors: Error {
     case invalidURL
 }
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
     var quoteController = QuoteController()
-    var quoteViewModels = [QuoteViewModel]()
+    //    var quoteViewModels = [QuoteViewModel]()
+    var quoteViewModel = QuoteViewModel()
     var tempTagsArray = [String]()
     
     var url: String = "https://api.quotable.io/random"
@@ -33,42 +34,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let viewControllerSegueIdentifier = "show_author_view_controller"
     
+    override func viewWillAppear(_ animated: Bool) {
+        //        setAuthorPageView()
+        print("viewwillappear 1")
+        //        print(authorBio)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationController()
         setupTableView()
         
-        getQuote(from: url)
-        getQuote(from: url)
-        getQuote(from: url)
-        getQuote(from: url)
-        getQuote(from: url)
-        getQuote(from: url)
-        getQuote(from: url)
-        getQuote(from: url)
-        getQuote(from: url)
+        quoteViewModel.getQuote(from: url) { (quote, error) in
+            if quote != nil {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 }
 
-extension ViewController {
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return quoteViewModels.count
+        return quoteViewModel.quotes.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quotecellid", for: indexPath) as! QuoteCell
         cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
         cell.layoutIfNeeded()
         
-        cell.contentLabel.text = quoteViewModels[indexPath.row].quoteContent
-        cell.authorButton.setTitle(quoteViewModels[indexPath.row].quoteAuthor, for: .normal)
+        cell.contentLabel.text = quoteViewModel.quotes[indexPath.row].quoteContent
+        cell.authorButton.setTitle(quoteViewModel.quotes[indexPath.row].quoteAuthor, for: .normal)
         
         // Problem is in here //
         cell.tagsView.removeAllTags()
-        cell.tagsView.addTags(quoteViewModels[indexPath.row].quoteTags)
+        cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
         cell.authorButton.tag = indexPath.row
         cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
         
@@ -87,82 +92,7 @@ extension ViewController {
             self.tableView.reloadData()
         }
     }
-    
-    func getQuote(from url: String?) {
         
-        assert(url != nil, "URL isn't correct")
-        
-        guard let url = url else {
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
-            
-            guard let data = data, error == nil else {
-                print("JSON Parsing error!")
-                return
-            }
-            
-            var quote: Quote?
-            
-            do {
-                quote = try JSONDecoder().decode(Quote.self, from: data)
-            }
-            catch {
-                print(String(describing: error))
-            }
-            
-            guard quote != nil else {
-                return
-            }
-            
-            let quoteViewModel = QuoteViewModel(quote: quote!)
-            self.quoteViewModels.append(quoteViewModel)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
-        task.resume()
-    }
-    
-    func getQuoteByAuthor(authorName name: String)  {
-        
-        let url = "https://quotable.io/quotes?author=" + name.replacingOccurrences(of: " ", with: "-").lowercased()
-        
-
-        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
-            
-            guard let data = data, error == nil else {
-                print("JSON Parsing error!")
-                return
-            }
-            
-            var quoteByAuthor: QuoteByAuthor?
-            
-            do {
-                quoteByAuthor = try JSONDecoder().decode(QuoteByAuthor.self, from: data)
-            }
-            catch {
-                print(String(describing: error))
-            }
-            
-            guard quoteByAuthor != nil else {
-                return
-            }
-            
-            for i in 0...(quoteByAuthor?.results.count)! - 1 {
-                let quoteViewModel = QuoteViewModel(quote: (quoteByAuthor?.results[i])!)
-                self.quoteViewModels.append(quoteViewModel)
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
-        task.resume()
-    }
-    
     func authorButtonTapped(_ cell: QuoteCell) {
         let indexPath = self.tableView.indexPath(for: cell)
     }
@@ -181,42 +111,30 @@ extension ViewController {
     }
     
     func getUniqueElements(from array: [String]) -> [String] {
-      //Create an empty Set to track unique items
-      var set = Set<String>()
-      let result = array.filter {
-        guard !set.contains($0) else {
-          //If the set already contains this object, return false
-          //so we skip it
-          return false
+        //Create an empty Set to track unique items
+        var set = Set<String>()
+        let result = array.filter {
+            guard !set.contains($0) else {
+                //If the set already contains this object, return false
+                //so we skip it
+                return false
+            }
+            //Add this item to the set since it will now be in the array
+            set.insert($0)
+            //Return true so that filtered array will contain this item.
+            return true
         }
-        //Add this item to the set since it will now be in the array
-        set.insert($0)
-        //Return true so that filtered array will contain this item.
-        return true
-      }
-      return result
+        return result
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
         if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
-//            print("getch more data")
-            getQuote(from: url)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == viewControllerSegueIdentifier,
-            let destination = segue.destination as? AuthorPageViewController,
-            let quoteIndex = tableView.indexPathForSelectedRow {
-            destination.authorName = ""
+            quoteViewModel.getQuote(from: url, completionHandler: { (quote, error) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+        })
         }
     }
 }
-
-

@@ -11,6 +11,7 @@
 		C22772722885A23B0099A8EA /* WikipediaKit in Frameworks */ = {isa = PBXBuildFile; productRef = C22772712885A23B0099A8EA /* WikipediaKit */; };
 		C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */; };
 		C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */; };
+		C24B973A288829EC0081C98F /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B9739288829EC0081C98F /* Author.swift */; };
 		C25E13EF2885B96D002A11A1 /* AuthorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25E13EE2885B96D002A11A1 /* AuthorImage.swift */; };
 		C25E14002885C0C4002A11A1 /* noPhotoImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C25E13FF2885C0C4002A11A1 /* noPhotoImage.jpeg */; };
 		C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB6CB0287CDC74000A65DF /* QuoteController.swift */; };
@@ -32,6 +33,7 @@
 		841C50443A53E33225D75847 /* Pods-Motivator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motivator.release.xcconfig"; path = "Target Support Files/Pods-Motivator/Pods-Motivator.release.xcconfig"; sourceTree = "<group>"; };
 		C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = OscarWilde.jpeg; path = ../../../../../Desktop/OscarWilde.jpeg; sourceTree = "<group>"; };
 		C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorPageViewController.swift; sourceTree = "<group>"; };
+		C24B9739288829EC0081C98F /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		C25E13EE2885B96D002A11A1 /* AuthorImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorImage.swift; sourceTree = "<group>"; };
 		C25E13FF2885C0C4002A11A1 /* noPhotoImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = noPhotoImage.jpeg; path = ../../../../../Desktop/noPhotoImage.jpeg; sourceTree = "<group>"; };
 		C2AB6CB0287CDC74000A65DF /* QuoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C2E08E90287B93310090DD47 /* Quote.swift */,
+				C24B9739288829EC0081C98F /* Author.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */,
 				C2E54C2128772C8D00919396 /* ViewController.swift in Sources */,
 				C2E54C1D28772C8D00919396 /* AppDelegate.swift in Sources */,
+				C24B973A288829EC0081C98F /* Author.swift in Sources */,
 				C2E54C1F28772C8D00919396 /* SceneDelegate.swift in Sources */,
 				C2E08E91287B93310090DD47 /* Quote.swift in Sources */,
 				C2E54C2728772C8D00919396 /* Motivator.xcdatamodeld in Sources */,
