@@ -14,17 +14,18 @@ import Kingfisher
 
 // TODO: Parse and show occupation, birthplace and birthdate information
 // TODO: Add author saving option
-// TODO: Make shadow gradient effect between top and the tableview
+// TODO: Make shadow gradient effect between top and the tableview: DONE
 
 class AuthorPageViewController: ViewController {
     
     var tempURL: String = ""
     var authorName: String = ""
-    var appAuthorEmail = "urbanovich.tima@gmail.com"
-    var language = WikipediaLanguage("en")
     var authorBio = Author(_id: "", bio: "", description: "", link: "", name: "", slug: "", quoteCount: 0)
     lazy var authorUrl = "https://quotable.io/quotes?author=\(authorName.replacingOccurrences(of: " ", with: "-").lowercased())"
     var isAuthorSaved: Bool = false
+    
+    var appAuthorEmail = "urbanovich.tima@gmail.com"
+    var language = WikipediaLanguage("en")
     
     @IBOutlet weak var authorImage: AuthorImage!
     @IBOutlet weak var authorBioView: UIView!
@@ -94,6 +95,7 @@ extension AuthorPageViewController {
         authorBioView.layer.shadowOpacity = 1
         authorBioView.layer.shadowColor = UIColor.gray.cgColor
         authorBioView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        saveAuthorButton.isEnabled = true
         
         self.navigationController?.title = authorName
         authorImage.layer.cornerRadius = 15
@@ -141,6 +143,7 @@ extension AuthorPageViewController {
                 self.occupationLabel.text = self.authorBio.description
                 guard let firstIndexOfDate = self.authorBio.bio.firstIndex(of: "(") else { self.birthDateLabel.text = ""; return }
                 guard let lastIndexOfDate = self.authorBio.bio.firstIndex(of: ")") else { return }
+                //range requires upper/lower bound
                 let range = firstIndexOfDate ..< lastIndexOfDate
                 let lifetime = self.authorBio.bio
                 self.birthDateLabel.text = String(lifetime[range]).replacingOccurrences(of: "(", with: "")

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4916FAD063867B3C07459A0E /* Pods_Motivator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8F78353E58D4C6043DD939 /* Pods_Motivator.framework */; };
+		C21B9218288DDE05004FCDF6 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21B9217288DDE05004FCDF6 /* MenuController.swift */; };
 		C22772722885A23B0099A8EA /* WikipediaKit in Frameworks */ = {isa = PBXBuildFile; productRef = C22772712885A23B0099A8EA /* WikipediaKit */; };
 		C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */; };
 		C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */; };
@@ -26,11 +27,13 @@
 		C2E54C2728772C8D00919396 /* Motivator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2E54C2528772C8D00919396 /* Motivator.xcdatamodeld */; };
 		C2E54C2928772C9000919396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E54C2828772C9000919396 /* Assets.xcassets */; };
 		C2E54C2C28772C9000919396 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E54C2A28772C9000919396 /* LaunchScreen.storyboard */; };
+		C2EFA7B028A67C120000F91A /* SideMenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFA7AF28A67C110000F91A /* SideMenuListController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F8F78353E58D4C6043DD939 /* Pods_Motivator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Motivator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		841C50443A53E33225D75847 /* Pods-Motivator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motivator.release.xcconfig"; path = "Target Support Files/Pods-Motivator/Pods-Motivator.release.xcconfig"; sourceTree = "<group>"; };
+		C21B9217288DDE05004FCDF6 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = OscarWilde.jpeg; path = ../../../../../Desktop/OscarWilde.jpeg; sourceTree = "<group>"; };
 		C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorPageViewController.swift; sourceTree = "<group>"; };
 		C24B9739288829EC0081C98F /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 		C2E54C2828772C9000919396 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2E54C2B28772C9000919396 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2E54C2D28772C9000919396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2EFA7AF28A67C110000F91A /* SideMenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuListController.swift; sourceTree = "<group>"; };
 		EB9EC8889C50D9931C5479C7 /* Pods-Motivator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motivator.debug.xcconfig"; path = "Target Support Files/Pods-Motivator/Pods-Motivator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +130,8 @@
 				C2C0CC70287CFB570046DD42 /* QuoteCell.swift */,
 				C2E54C2228772C8D00919396 /* Main.storyboard */,
 				C25E13EE2885B96D002A11A1 /* AuthorImage.swift */,
+				C21B9217288DDE05004FCDF6 /* MenuController.swift */,
+				C2EFA7AF28A67C110000F91A /* SideMenuListController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,6 +307,8 @@
 				C2C0CC72287CFB570046DD42 /* QuoteCell.swift in Sources */,
 				C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */,
 				C2AB6CB5287CDE79000A65DF /* QuoteViewModel.swift in Sources */,
+				C21B9218288DDE05004FCDF6 /* MenuController.swift in Sources */,
+				C2EFA7B028A67C120000F91A /* SideMenuListController.swift in Sources */,
 				C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */,
 				C2E54C2128772C8D00919396 /* ViewController.swift in Sources */,
 				C2E54C1D28772C8D00919396 /* AppDelegate.swift in Sources */,

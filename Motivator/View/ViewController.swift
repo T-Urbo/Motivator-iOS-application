@@ -16,10 +16,6 @@ import RxSwift
 import TagListView
 import SideMenu
 
-enum URLSessionErrors: Error {
-    case invalidURL
-}
-
 class ViewController: UIViewController, TagListViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -36,13 +32,14 @@ class ViewController: UIViewController, TagListViewDelegate {
     
     let viewControllerSegueIdentifier = "show_author_view_controller"
 
-    private let sideMenu = SideMenuNavigationController(rootViewController: UIViewController())
+    private let sideMenu = SideMenuNavigationController(rootViewController: SideMenuListController(with: ["Search", "Quote creator", "Saved"]))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationController()
         setupTableView()
+        setupSideMenu()
         
         quoteViewModel.getQuote(from: url) { (quote, error) in
             if quote != nil {
@@ -54,6 +51,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     }
     
     @IBAction func onSideMenuButtonClick(_ sender: Any) {
+        sideMenu.pushStyle = .subMenu
         present(sideMenu, animated: true)
     }
     
@@ -62,7 +60,6 @@ class ViewController: UIViewController, TagListViewDelegate {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return quoteViewModel.quotes.count
@@ -110,11 +107,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupNavigationController() {
-        
-        self.navigationController?.navigationBar.backgroundColor = .systemBlue
-        self.sideMenu.leftSide = true
-        SideMenuManager.default.leftMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
+//        self.navigationController?.navigationBar.backgroundColor = .systemBlue
     }
     
     func setupTableView() {
@@ -123,7 +116,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.showsVerticalScrollIndicator = false
-        
+    }
+    
+    func setupSideMenu() {
+        self.sideMenu.leftSide = true
+        self.sideMenu.setNavigationBarHidden(true, animated: false)
+        SideMenuManager.default.leftMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
     }
     
     func getUniqueElements(from array: [String]) -> [String] {
