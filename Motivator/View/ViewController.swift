@@ -16,15 +16,15 @@ import RxSwift
 import TagListView
 import SideMenu
 
-class ViewController: UIViewController, TagListViewDelegate {
+class ViewController: UIViewController, TagListViewDelegate, SideMenuListControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     
     var quoteController = QuoteController()
-    //    var quoteViewModels = [QuoteViewModel]()
     var quoteViewModel = QuoteViewModel()
     var tempTagsArray = [String]()
+    var savedAuthorsArray: [Author] = [Author]()
     
     var url: String = "https://api.quotable.io/random"
     let cellId = "quotecellid"
@@ -32,11 +32,13 @@ class ViewController: UIViewController, TagListViewDelegate {
     
     let viewControllerSegueIdentifier = "show_author_view_controller"
 
-    private let sideMenu = SideMenuNavigationController(rootViewController: SideMenuListController(with: ["Search", "Quote creator", "Saved"]))
+    private var sideMenu: SideMenuNavigationController?
+    let menu = SideMenuListController(with: ["🔎 Search", "✍️ Quote creator", "💾 Saved"])
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         setupNavigationController()
         setupTableView()
         setupSideMenu()
@@ -51,10 +53,22 @@ class ViewController: UIViewController, TagListViewDelegate {
     }
     
     @IBAction func onSideMenuButtonClick(_ sender: Any) {
-        sideMenu.pushStyle = .subMenu
-        present(sideMenu, animated: true)
+        sideMenu!.pushStyle = .default
+        present(sideMenu!, animated: true)
     }
     
+    func didSelectMenuItem(named: String) {
+        sideMenu?.dismiss(animated: true, completion: {
+            print("\(named) button was pressed")
+            
+            switch named {
+                case "Search": print("0") // push Search vc
+                case "Quote creator": print("1") // push Quote creator vc
+                case "Saved": print("2") // push Saved content vc
+                default: print("...")
+            }
+        })
+    }
     
     
 }
@@ -91,7 +105,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             authorpagevc.authorName = (button.titleLabel?.text!)!
             authorpagevc.title = (button.titleLabel?.text!)!
             self.present(authorpagevc, animated: true, completion: nil)
-            
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -119,8 +132,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupSideMenu() {
-        self.sideMenu.leftSide = true
-        self.sideMenu.setNavigationBarHidden(true, animated: false)
+        self.menu.delegate = self
+        self.sideMenu = SideMenuNavigationController(rootViewController: menu)
+        self.sideMenu?.leftSide = true
+        self.sideMenu?.setNavigationBarHidden(true, animated: false)
         SideMenuManager.default.leftMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
     }
@@ -152,4 +167,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         })
         }
     }
+}
+
+// MARK: - SaveAuthorDelegate protocol implementation
+extension ViewController: SaveAuthorDelegate {
+    func saveAuthor(authorName: String) {
+        print("delegate")
+    }
+    
 }

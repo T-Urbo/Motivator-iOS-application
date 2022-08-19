@@ -15,6 +15,8 @@
 		C24B973A288829EC0081C98F /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B9739288829EC0081C98F /* Author.swift */; };
 		C25E13EF2885B96D002A11A1 /* AuthorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25E13EE2885B96D002A11A1 /* AuthorImage.swift */; };
 		C25E14002885C0C4002A11A1 /* noPhotoImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C25E13FF2885C0C4002A11A1 /* noPhotoImage.jpeg */; };
+		C2A486D928AE91890074D51F /* SavedContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A486D728AE91880074D51F /* SavedContentViewController.xib */; };
+		C2A486DA28AE91890074D51F /* SavedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A486D828AE91880074D51F /* SavedContentViewController.swift */; };
 		C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB6CB0287CDC74000A65DF /* QuoteController.swift */; };
 		C2AB6CB5287CDE79000A65DF /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */; };
 		C2C0CC71287CFB570046DD42 /* QuoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */; };
@@ -39,6 +41,8 @@
 		C24B9739288829EC0081C98F /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		C25E13EE2885B96D002A11A1 /* AuthorImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorImage.swift; sourceTree = "<group>"; };
 		C25E13FF2885C0C4002A11A1 /* noPhotoImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = noPhotoImage.jpeg; path = ../../../../../Desktop/noPhotoImage.jpeg; sourceTree = "<group>"; };
+		C2A486D728AE91880074D51F /* SavedContentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedContentViewController.xib; sourceTree = "<group>"; };
+		C2A486D828AE91880074D51F /* SavedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedContentViewController.swift; sourceTree = "<group>"; };
 		C2AB6CB0287CDC74000A65DF /* QuoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteController.swift; sourceTree = "<group>"; };
 		C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuoteCell.xib; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				C25E13EE2885B96D002A11A1 /* AuthorImage.swift */,
 				C21B9217288DDE05004FCDF6 /* MenuController.swift */,
 				C2EFA7AF28A67C110000F91A /* SideMenuListController.swift */,
+				C2A486D728AE91880074D51F /* SavedContentViewController.xib */,
+				C2A486D828AE91880074D51F /* SavedContentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2C0CC71287CFB570046DD42 /* QuoteCell.xib in Resources */,
+				C2A486D928AE91890074D51F /* SavedContentViewController.xib in Resources */,
 				C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */,
 				C25E14002885C0C4002A11A1 /* noPhotoImage.jpeg in Resources */,
 				C2E54C2C28772C9000919396 /* LaunchScreen.storyboard in Resources */,
@@ -307,6 +314,7 @@
 				C2C0CC72287CFB570046DD42 /* QuoteCell.swift in Sources */,
 				C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */,
 				C2AB6CB5287CDE79000A65DF /* QuoteViewModel.swift in Sources */,
+				C2A486DA28AE91890074D51F /* SavedContentViewController.swift in Sources */,
 				C21B9218288DDE05004FCDF6 /* MenuController.swift in Sources */,
 				C2EFA7B028A67C120000F91A /* SideMenuListController.swift in Sources */,
 				C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */,

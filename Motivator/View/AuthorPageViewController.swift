@@ -11,10 +11,13 @@ import RxSwift
 import TagListView
 import WikipediaKit
 import Kingfisher
-
-// TODO: Parse and show occupation, birthplace and birthdate information
+    
 // TODO: Add author saving option
-// TODO: Make shadow gradient effect between top and the tableview: DONE
+// TODO: Add author's name on top of the view
+    
+protocol SaveAuthorDelegate {
+    func saveAuthor(authorName: String)
+}
 
 class AuthorPageViewController: ViewController {
     
@@ -23,6 +26,7 @@ class AuthorPageViewController: ViewController {
     var authorBio = Author(_id: "", bio: "", description: "", link: "", name: "", slug: "", quoteCount: 0)
     lazy var authorUrl = "https://quotable.io/quotes?author=\(authorName.replacingOccurrences(of: " ", with: "-").lowercased())"
     var isAuthorSaved: Bool = false
+    
     
     var appAuthorEmail = "urbanovich.tima@gmail.com"
     var language = WikipediaLanguage("en")
@@ -49,7 +53,9 @@ class AuthorPageViewController: ViewController {
             if let image = UIImage(systemName: "bookmark.fill") {
                 saveAuthorButton.setImage(image, for: .normal)
             }
-            // do core data save to context operation
+//            super.savedAuthorsArray.append(authorName)
+            
+            // do core data save operation
         case false:
             if let image = UIImage(systemName: "bookmark") {
                 saveAuthorButton.setImage(image, for: .normal)
@@ -57,6 +63,8 @@ class AuthorPageViewController: ViewController {
         }
     }
 }
+
+// MARK: - AuthorPageViewController table view data source
 
 extension AuthorPageViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,8 +88,9 @@ extension AuthorPageViewController {
     }
 }
 
+// MARK: - AuthorPageViewController setup
+
 extension AuthorPageViewController {
-    
     func setupWikipediaRequestArticle() {
         WikipediaNetworking.appAuthorEmailForAPI = appAuthorEmail
     }
@@ -109,7 +118,6 @@ extension AuthorPageViewController {
                     self.authorImage.image = UIImage(named: "noPhotoImage")
                 case .some(let url):
                     self.authorImage.kf.setImage(with: url)
-//                    self.occupationLabel.text = author
                 }
             case .failure(let error):
                 print(error)
@@ -139,6 +147,7 @@ extension AuthorPageViewController {
             guard authorResults != nil else { print("authorResults is nil!"); return }
             self.authorBio = authorResults!.results.first!
             print("authorBio after loadAfterBio func: \(self.authorBio)")
+            
             DispatchQueue.main.async {
                 self.occupationLabel.text = self.authorBio.description
                 guard let firstIndexOfDate = self.authorBio.bio.firstIndex(of: "(") else { self.birthDateLabel.text = ""; return }
