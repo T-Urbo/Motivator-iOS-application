@@ -148,6 +148,10 @@ extension AuthorPageViewController {
             self.authorBio = authorResults!.results.first!
             print("authorBio after loadAfterBio func: \(self.authorBio)")
             
+            if(super.savedAuthorsArray.contains(self.authorBio)) {
+                
+            }
+            
             DispatchQueue.main.async {
                 self.occupationLabel.text = self.authorBio.description
                 guard let firstIndexOfDate = self.authorBio.bio.firstIndex(of: "(") else { self.birthDateLabel.text = ""; return }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Author: Decodable {
+struct Author: Decodable, Equatable {
     var _id: String
     var bio: String
     var description: String
