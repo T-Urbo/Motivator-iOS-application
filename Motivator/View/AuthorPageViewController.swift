@@ -23,7 +23,7 @@ class AuthorPageViewController: ViewController {
     
     var tempURL: String = ""
     var authorName: String = ""
-    var authorBio = Author(_id: "", bio: "", description: "", link: "", name: "", slug: "", quoteCount: 0)
+    
     lazy var authorUrl = "https://quotable.io/quotes?author=\(authorName.replacingOccurrences(of: " ", with: "-").lowercased())"
     var isAuthorSaved: Bool = false
     
@@ -34,39 +34,63 @@ class AuthorPageViewController: ViewController {
     @IBOutlet weak var authorImage: AuthorImage!
     @IBOutlet weak var authorBioView: UIView!
     @IBOutlet weak var occupationLabel: UILabel!
-    @IBOutlet weak var birthplaceLabel: UILabel!
     @IBOutlet weak var birthDateLabel: UILabel!
     @IBOutlet weak var saveAuthorButton: UIButton!
+    
+    var authorViewModel = AuthorViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAuthorPageView()
-        getQuotesByAuthor(authorName: authorName)
+        quoteViewModel.quotes.removeAll()
+        quoteViewModel.getQuotesByAuthor(authorName: authorName, completionHandler: { (quote, error) in
+            if(quote != nil) {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        })
     }
     
     @IBAction func onSaveAuthorButtonClick(_ sender: Any) {
         print("button was tapped!!!")
-        isAuthorSaved = !isAuthorSaved
         print(isAuthorSaved)
         switch isAuthorSaved {
         case true:
             if let image = UIImage(systemName: "bookmark.fill") {
                 saveAuthorButton.setImage(image, for: .normal)
             }
-//            super.savedAuthorsArray.append(authorName)
-            
+            if(!super.savedAuthorsArray.contains(authorViewModel.author)) {
+                super.savedAuthorsArray.append(authorViewModel.author)
+                print("SavedAuthorsArray: \(super.savedAuthorsArray)")
+                print("savedAuthors: \(super.savedAuthorsArray.count)")
+            }
             // do core data save operation
         case false:
             if let image = UIImage(systemName: "bookmark") {
                 saveAuthorButton.setImage(image, for: .normal)
-            }        // do core data delete from context operation
+            }
+            
+            if(super.savedAuthorsArray.contains(authorViewModel.author)) {
+                if let authorToRemoveIndex = super.savedAuthorsArray.index(of: authorViewModel.author) {
+                    super.savedAuthorsArray.remove(at: authorToRemoveIndex)
+                    print("SavedAuthorsArray: \(super.savedAuthorsArray)")
+                    print("savedAuthors: \(super.savedAuthorsArray.count)")
+                }
+            }
+            // do core data delete from context operation
         }
+        isAuthorSaved = !isAuthorSaved
     }
 }
 
 // MARK: - AuthorPageViewController table view data source
 
 extension AuthorPageViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return authorViewModel.author.quoteCount
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quotecellid", for: indexPath) as! QuoteCell
         cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
@@ -79,8 +103,6 @@ extension AuthorPageViewController {
         cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
         cell.authorButton.tag = indexPath.row
         cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
-        
-        
         
         // cell.authorButton - try to disable the author button
         
@@ -97,8 +119,8 @@ extension AuthorPageViewController {
     
     func setupAuthorPageView() {
         setupWikipediaRequestArticle()
-        loadAuthorBio()
-        setupAuthorBio()
+        authorViewModel.loadAuthorBio(authorName: authorName)
+
         authorBioView.layer.masksToBounds = false
         authorBioView.layer.shadowRadius = 4
         authorBioView.layer.shadowOpacity = 1
@@ -112,10 +134,10 @@ extension AuthorPageViewController {
             switch result {
             case .success(let article):
                 self.authorImage.setImageView()
-                
+                self.setupAuthorBio(withAuthor: self.authorViewModel)
                 switch article.imageURL {
                 case nil:
-                    self.authorImage.image = UIImage(named: "noPhotoImage")
+                   self.authorImage.image = UIImage(named: "noPhotoImage")
                 case .some(let url):
                     self.authorImage.kf.setImage(with: url)
                 }
@@ -125,105 +147,28 @@ extension AuthorPageViewController {
         }
     }
 
-    func loadAuthorBio() {
-        let url = "https://quotable.io/authors?slug=" + self.authorName.replacingOccurrences(of: " ", with: "-").lowercased()
+    
+    
+    func setupAuthorBio(withAuthor author: AuthorViewModel) {
         
-        print(url)
-        
-        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, responce, error in
-            
-            guard let data = data, error == nil else { print("data is nil!"); return }
-            print(data)
-            
-            var authorResults: AuthorResults?
-            
-            do {
-                authorResults = try JSONDecoder().decode(AuthorResults.self, from: data)
-            }
-            catch {
-                print(String(describing: error))
-            }
-            
-            guard authorResults != nil else { print("authorResults is nil!"); return }
-            self.authorBio = authorResults!.results.first!
-            print("authorBio after loadAfterBio func: \(self.authorBio)")
-            
-            if(super.savedAuthorsArray.contains(self.authorBio)) {
-                
-            }
-            
-            DispatchQueue.main.async {
-                self.occupationLabel.text = self.authorBio.description
-                guard let firstIndexOfDate = self.authorBio.bio.firstIndex(of: "(") else { self.birthDateLabel.text = ""; return }
-                guard let lastIndexOfDate = self.authorBio.bio.firstIndex(of: ")") else { return }
-                //range requires upper/lower bound
-                let range = firstIndexOfDate ..< lastIndexOfDate
-                let lifetime = self.authorBio.bio
-                self.birthDateLabel.text = String(lifetime[range]).replacingOccurrences(of: "(", with: "")
-            }
-        })
-        task.resume()
+        self.occupationLabel.text = author.author.description + " •"
+        self.birthDateLabel.text = {
+            guard let firstIndexDate = author.author.bio.firstIndex(of: "(") else { return "Unknown"}
+            guard let lastIndexDate = author.author.bio.firstIndex(of: ")") else { return "Unknown"}
+            return String(author.author.bio[firstIndexDate..<lastIndexDate]).replacingOccurrences(of: "(", with: "") + " •"
+        }()
     }
-    
-    func getQuotesByAuthor(authorName name: String)  {
-
-        let url = "https://quotable.io/quotes?author=" + name.replacingOccurrences(of: " ", with: "-").lowercased()
-
-
-        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
-
-            guard let data = data, error == nil else {
-                print("JSON Parsing error!")
-                return
-            }
-
-            var quoteByAuthor: QuoteByAuthor?
-
-            do {
-                quoteByAuthor = try JSONDecoder().decode(QuoteByAuthor.self, from: data)
-            }
-            catch {
-                print(String(describing: error))
-            }
-
-            guard quoteByAuthor != nil else {
-                return
-            }
-
-            for i in 0...(quoteByAuthor?.results.count)! - 1 {
-                let quoteViewModel = QuoteModel(quote: (quoteByAuthor?.results[i])!)
-                self.quoteViewModel.quotes.append(quoteViewModel)
-            }
-
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
-        task.resume()
-    }
-    
-    func setupAuthorBio() {
-        self.occupationLabel.text = ""
-        self.birthplaceLabel.text = ""
-    }
-    
-    
 }
-
-extension AuthorPageViewController {
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewwillappear")
-        print(authorBio)
-    }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
-//            getQuotesByAuthor(authorName: authorName)
+//
+//extension AuthorPageViewController {
+//
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let position = scrollView.contentOffset.y
+//        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
+//            authorViewModel.getQuotesByAuthor(authorName: authorName)
 //            DispatchQueue.main.async {
 //                self.tableView.reloadData()
 //            }
-        }
-    }
-}
+//        }
+//    }
+//}

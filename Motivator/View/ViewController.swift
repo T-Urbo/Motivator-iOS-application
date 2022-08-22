@@ -6,9 +6,6 @@
 //
 
 //TODO: Choose frameworks -> RxSwift, RxCocoa, WikipediaKit, Kingfisher, SideMenu
-//      Decide about the architecture -> MVVM
-//      Find an API source of quotes: quotable.io
-//      Make a segue to AuthorPageViewController if authorButton(QuoteCell.swift) was clicked
 
 
 import UIKit
@@ -115,9 +112,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         print("tag pressed: \(title), \(sender)")
     }
         
-    func authorButtonTapped(_ cell: QuoteCell) {
-        let indexPath = self.tableView.indexPath(for: cell)
-    }
+//    func authorButtonTapped(_ cell: QuoteCell) {
+    //        _ = self.tableView.indexPath(for: cell)
+//    }
     
     func setupNavigationController() {
 //        self.navigationController?.navigationBar.backgroundColor = .systemBlue
@@ -164,7 +161,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-        })
+            })
         }
     }
 }

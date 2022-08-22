@@ -105,8 +105,8 @@
 		C2AB6CB3287CDE56000A65DF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */,
 				C25E643528AFBC2B002E4042 /* AuthorViewModel.swift */,
+				C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -121,8 +121,8 @@
 		C2E08E8F287B92FF0090DD47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C2E08E90287B93310090DD47 /* Quote.swift */,
 				C24B9739288829EC0081C98F /* Author.swift */,
+				C2E08E90287B93310090DD47 /* Quote.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

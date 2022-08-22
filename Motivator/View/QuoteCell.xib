@@ -52,7 +52,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="CONTENT" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huk-77-4i4">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="CONTENT" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huk-77-4i4">
                         <rect key="frame" x="10" y="0.0" width="301" height="124"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="124" id="rrE-eo-Qaf"/>

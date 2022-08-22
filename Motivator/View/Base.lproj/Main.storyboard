@@ -151,20 +151,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-JV-fxn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="occupation" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOD-hM-gYM">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOD-hM-gYM">
                                                 <rect key="frame" x="186" y="33" width="187" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="birthplace" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Suw-yQ-kz4">
-                                                <rect key="frame" x="186" y="61.5" width="220" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="birthDate" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-oi-Ukp">
-                                                <rect key="frame" x="186" y="89" width="220" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -187,22 +175,24 @@
                                                     <action selector="onSaveAuthorButtonClick:" destination="urE-bU-qKt" eventType="touchUpInside" id="Oeh-ri-Yge"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-oi-Ukp">
+                                                <rect key="frame" x="186" y="61" width="220" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="qz1-vZ-tdU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CYL-JV-fxn" secondAttribute="leading" constant="20" symbolic="YES" id="248-OS-PKs"/>
                                             <constraint firstAttribute="trailing" secondItem="jOD-hM-gYM" secondAttribute="trailing" constant="41" id="2jc-jo-uod"/>
                                             <constraint firstItem="d4C-oi-Ukp" firstAttribute="leading" secondItem="tQy-ki-Bgl" secondAttribute="trailing" constant="33" id="5Xj-hw-1Bw"/>
-                                            <constraint firstItem="d4C-oi-Ukp" firstAttribute="top" secondItem="Suw-yQ-kz4" secondAttribute="bottom" constant="7" id="F2V-IQ-We1"/>
-                                            <constraint firstItem="Suw-yQ-kz4" firstAttribute="top" secondItem="jOD-hM-gYM" secondAttribute="bottom" constant="8" symbolic="YES" id="M4l-YI-Cuu"/>
+                                            <constraint firstItem="d4C-oi-Ukp" firstAttribute="top" secondItem="jOD-hM-gYM" secondAttribute="bottom" constant="7.5" id="9jn-Yc-agp"/>
                                             <constraint firstItem="qz1-vZ-tdU" firstAttribute="top" secondItem="tQy-ki-Bgl" secondAttribute="top" id="NXS-7M-PpR"/>
                                             <constraint firstItem="jOD-hM-gYM" firstAttribute="top" secondItem="CYL-JV-fxn" secondAttribute="top" constant="33" id="iUO-Wu-aYI"/>
                                             <constraint firstItem="qz1-vZ-tdU" firstAttribute="trailing" secondItem="jOD-hM-gYM" secondAttribute="trailing" constant="33" id="jVi-4W-Qac"/>
-                                            <constraint firstItem="Suw-yQ-kz4" firstAttribute="leading" secondItem="tQy-ki-Bgl" secondAttribute="trailing" constant="33" id="kX0-Ja-nUx"/>
                                             <constraint firstItem="jOD-hM-gYM" firstAttribute="leading" secondItem="tQy-ki-Bgl" secondAttribute="trailing" constant="33" id="l6K-de-fVE"/>
-                                            <constraint firstAttribute="trailing" secondItem="Suw-yQ-kz4" secondAttribute="trailing" constant="8" id="mk4-Gm-TaK"/>
                                             <constraint firstItem="jOD-hM-gYM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d4C-oi-Ukp" secondAttribute="leading" id="naT-A6-O99"/>
-                                            <constraint firstItem="jOD-hM-gYM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Suw-yQ-kz4" secondAttribute="leading" id="o71-3g-tjL"/>
                                             <constraint firstAttribute="trailing" secondItem="d4C-oi-Ukp" secondAttribute="trailing" constant="8" id="q8d-hE-lEP"/>
                                         </constraints>
                                     </view>
@@ -237,7 +227,6 @@
                         <outlet property="authorBioView" destination="CYL-JV-fxn" id="5O7-Or-SOr"/>
                         <outlet property="authorImage" destination="tQy-ki-Bgl" id="dAa-BH-04y"/>
                         <outlet property="birthDateLabel" destination="d4C-oi-Ukp" id="oAD-fD-b6F"/>
-                        <outlet property="birthplaceLabel" destination="Suw-yQ-kz4" id="eFd-8z-bEC"/>
                         <outlet property="occupationLabel" destination="jOD-hM-gYM" id="jPU-Zx-50u"/>
                         <outlet property="saveAuthorButton" destination="qz1-vZ-tdU" id="Gq8-Sd-RRK"/>
                         <outlet property="tableView" destination="M70-ha-T2j" id="rlu-d3-gHm"/>
