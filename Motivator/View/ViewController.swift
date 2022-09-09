@@ -7,7 +7,6 @@
 
 //TODO: Choose frameworks -> RxSwift, RxCocoa, WikipediaKit, Kingfisher, SideMenu
 
-
 import UIKit
 import RxSwift
 import TagListView
@@ -24,10 +23,11 @@ class ViewController: UIViewController, TagListViewDelegate, SideMenuListControl
     var savedAuthorsArray: [Author] = [Author]()
     
     var url: String = "https://api.quotable.io/random"
-    let cellId = "quotecellid"
-    let nib = UINib(nibName: "QuoteCell", bundle: nil)
     
-    let viewControllerSegueIdentifier = "show_author_view_controller"
+    let nib = UINib(nibName: "QuoteCell", bundle: nil)
+    let cellId = "quotecellid"
+    
+//    let viewControllerSegueIdentifier = "show_author_view_controller"
 
     private var sideMenu: SideMenuNavigationController?
     let menu = SideMenuListController(with: ["🔎 Search", "✍️ Quote creator", "💾 Saved"])
@@ -35,10 +35,11 @@ class ViewController: UIViewController, TagListViewDelegate, SideMenuListControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         setupNavigationController()
         setupTableView()
         setupSideMenu()
+        
         
         quoteViewModel.getQuote(from: url) { (quote, error) in
             if quote != nil {
@@ -81,17 +82,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
         cell.layoutIfNeeded()
         
-        cell.contentLabel.text = quoteViewModel.quotes[indexPath.row].quoteContent
-        cell.authorButton.setTitle(quoteViewModel.quotes[indexPath.row].quoteAuthor, for: .normal)
-        
-        // Problem is in here //
-        cell.tagsView.removeAllTags()
-        cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
         cell.tagsView.delegate = self
         
+        cell.contentLabel.text = quoteViewModel.quotes[indexPath.row].quoteContent
+        
+        cell.authorButton.setTitle(quoteViewModel.quotes[indexPath.row].quoteAuthor, for: .normal)
         cell.authorButton.tag = indexPath.row
         cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
         
+        cell.tagsView.removeAllTags()
+        cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
+        cell.tagsView.delegate = self
         
         return cell
     }
@@ -100,7 +101,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         print("the button with tag: \(button.tag) clicked in cell!")
         if let authorpagevc = storyboard?.instantiateViewController(identifier: "apvc") as? AuthorPageViewController {
             authorpagevc.authorName = (button.titleLabel?.text!)!
-            authorpagevc.title = (button.titleLabel?.text!)!
             self.present(authorpagevc, animated: true, completion: nil)
         }
         DispatchQueue.main.async {
@@ -108,13 +108,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tagClicked(title: String, tagView: TagView, sender: TagListView) {
-        print("tag pressed: \(title), \(sender)")
+    @objc func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        print("tag \(title), \(sender) pressed")
+        tagView.onTap = { tagView in
+            tagView.selectedTextColor = .gray
+            tagView.selectedBackgroundColor = .blue
+        }
+        if let tagssearchpagevc = storyboard?.instantiateViewController(identifier: "tagssearchpagevc") as? TagsSearchPageViewController {
+            tagssearchpagevc.tag = title
+            self.navigationController?.pushViewController(tagssearchpagevc, animated: true)
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
-        
-//    func authorButtonTapped(_ cell: QuoteCell) {
-    //        _ = self.tableView.indexPath(for: cell)
-//    }
+    
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        print("Tag \(title), \(sender) was removed!")
+    }
     
     func setupNavigationController() {
 //        self.navigationController?.navigationBar.backgroundColor = .systemBlue

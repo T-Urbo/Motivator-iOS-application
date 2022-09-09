@@ -44,6 +44,7 @@ class QuoteViewModel {
                 let quote = try JSONDecoder().decode(Quote.self, from: data)
                 completionHandler(quote, nil)
                 self.quotes.append(QuoteModel(quote: quote))
+//                self.quotes.shuffle()
             }
             catch {
                 print(String(describing: error))
@@ -80,12 +81,43 @@ class QuoteViewModel {
             for i in 0...(quoteByAuthor?.results.count)! - 1 {
                 let quoteViewModel = QuoteModel(quote: (quoteByAuthor?.results[i])!)
                 self.quotes.append(quoteViewModel)
-//                print("AUTHOR QUOTES: \(self.quoteViewModel.quotes)")
             }
+            self.quotes.shuffle()
         })
         task.resume()
     }
+    
+    func getQuotesByTag(tagName tag: String, completionHandler: @escaping (Quote?, Error) -> ()) {
+        let url = "https://api.quotable.io/quotes?tags=\(tag)"
+        
+        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
 
+            guard let data = data, error == nil else {
+                print("JSON Parsing error!")
+                return
+            }
+
+            var quoteByAuthor: QuoteByAuthor?
+
+            do {
+                quoteByAuthor = try JSONDecoder().decode(QuoteByAuthor.self, from: data)
+            }
+            catch {
+                print(String(describing: error))
+            }
+
+            guard quoteByAuthor != nil else {
+                return
+            }
+
+            for i in 0...(quoteByAuthor?.results.count)! - 1 {
+                let quoteViewModel = QuoteModel(quote: (quoteByAuthor?.results[i])!)
+                self.quotes.append(quoteViewModel)
+            }
+            self.quotes.shuffle()
+        })
+        task.resume()
+    }
 }
 
 

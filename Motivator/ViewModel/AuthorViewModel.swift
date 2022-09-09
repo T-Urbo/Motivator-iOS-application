@@ -5,6 +5,9 @@
 //  Created by Timothey Urbanovich on 19/08/2022.
 //
 
+// TODO: - JSON API parsing error handling! (for special letters)
+
+
 import Foundation
 
 struct AuthorModel {
@@ -13,7 +16,8 @@ struct AuthorModel {
     var authorImage: String
     var authorQuotes: Int
     var isAuthorSaved: Bool
-    
+
+
     init(withAuthor author: Author) {
         self.authorName = author.name
         self.authorOccupation = author.description
@@ -27,10 +31,12 @@ class AuthorViewModel {
     
     var savedAuthors: [Author] = [Author]()
     var author = Author(_id: "", bio: "", description: "", link: "", name: "", slug: "", quoteCount: 0)
+    
     var quoteViewModel = QuoteViewModel()
     
     
     func loadAuthorBio(authorName: String) {
+//        , completionHandler: @escaping (Author?, Error) -> ()
         let url = "https://quotable.io/authors?slug=" + authorName.replacingOccurrences(of: " ", with: "-").lowercased()
         print(url)
         
@@ -54,8 +60,8 @@ class AuthorViewModel {
             
             print("author after loadAuthorBio func: \(self.author)")
             print("loadAuthorBio func has ended!")
+            
         })
         task.resume()
     }
-    
 }

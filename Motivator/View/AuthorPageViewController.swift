@@ -12,8 +12,10 @@ import TagListView
 import WikipediaKit
 import Kingfisher
     
-// TODO: Add author saving option
-// TODO: Add author's name on top of the view
+// TODO: - Add author saving option
+// TODO: - Add author's name on top of the view
+// TODO: - Add label text changing animation
+// TODO: - Fix displaying authorsBio bug (second tap on author's button shows only 2 dots even if data exists)
     
 protocol SaveAuthorDelegate {
     func saveAuthor(authorName: String)
@@ -23,13 +25,13 @@ class AuthorPageViewController: ViewController {
     
     var tempURL: String = ""
     var authorName: String = ""
-    
     lazy var authorUrl = "https://quotable.io/quotes?author=\(authorName.replacingOccurrences(of: " ", with: "-").lowercased())"
     var isAuthorSaved: Bool = false
-    
-    
     var appAuthorEmail = "urbanovich.tima@gmail.com"
-    var language = WikipediaLanguage("en")
+   
+    
+//    var authorModel = AuthorModel(withAuthor: AuthorViewModel.author)
+    var authorViewModel = AuthorViewModel()
     
     @IBOutlet weak var authorImage: AuthorImage!
     @IBOutlet weak var authorBioView: UIView!
@@ -37,8 +39,6 @@ class AuthorPageViewController: ViewController {
     @IBOutlet weak var birthDateLabel: UILabel!
     @IBOutlet weak var saveAuthorButton: UIButton!
     
-    var authorViewModel = AuthorViewModel()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAuthorPageView()
@@ -51,6 +51,8 @@ class AuthorPageViewController: ViewController {
             }
         })
     }
+    
+    // MARK: - Saving author function
     
     @IBAction func onSaveAuthorButtonClick(_ sender: Any) {
         print("button was tapped!!!")
@@ -70,21 +72,13 @@ class AuthorPageViewController: ViewController {
             if let image = UIImage(systemName: "bookmark") {
                 saveAuthorButton.setImage(image, for: .normal)
             }
-            
-            if(super.savedAuthorsArray.contains(authorViewModel.author)) {
-                if let authorToRemoveIndex = super.savedAuthorsArray.index(of: authorViewModel.author) {
-                    super.savedAuthorsArray.remove(at: authorToRemoveIndex)
-                    print("SavedAuthorsArray: \(super.savedAuthorsArray)")
-                    print("savedAuthors: \(super.savedAuthorsArray.count)")
-                }
-            }
             // do core data delete from context operation
         }
         isAuthorSaved = !isAuthorSaved
     }
 }
 
-// MARK: - AuthorPageViewController table view data source
+    // MARK: - AuthorPageViewController's table view data source
 
 extension AuthorPageViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,7 +104,7 @@ extension AuthorPageViewController {
     }
 }
 
-// MARK: - AuthorPageViewController setup
+    // MARK: - AuthorPageViewController setup
 
 extension AuthorPageViewController {
     func setupWikipediaRequestArticle() {
@@ -119,8 +113,7 @@ extension AuthorPageViewController {
     
     func setupAuthorPageView() {
         setupWikipediaRequestArticle()
-        authorViewModel.loadAuthorBio(authorName: authorName)
-
+        setupAuthorBio(withAuthor: authorViewModel)
         authorBioView.layer.masksToBounds = false
         authorBioView.layer.shadowRadius = 4
         authorBioView.layer.shadowOpacity = 1
@@ -130,6 +123,7 @@ extension AuthorPageViewController {
         
         self.navigationController?.title = authorName
         authorImage.layer.cornerRadius = 15
+        let language = WikipediaLanguage("en")
         _ = Wikipedia.shared.requestArticle(language: language, title: authorName, imageWidth: Int(authorImage.bounds.width)) { result in
             switch result {
             case .success(let article):
@@ -146,29 +140,58 @@ extension AuthorPageViewController {
             }
         }
     }
-
-    
     
     func setupAuthorBio(withAuthor author: AuthorViewModel) {
+        author.loadAuthorBio(authorName: authorName)
         
-        self.occupationLabel.text = author.author.description + " •"
-        self.birthDateLabel.text = {
-            guard let firstIndexDate = author.author.bio.firstIndex(of: "(") else { return "Unknown"}
-            guard let lastIndexDate = author.author.bio.firstIndex(of: ")") else { return "Unknown"}
-            return String(author.author.bio[firstIndexDate..<lastIndexDate]).replacingOccurrences(of: "(", with: "") + " •"
-        }()
+        print("SUCCESS loading author's bio!")
+        self.occupationLabel.textWithAnimation(text: author.author.description + " •", duration: 0.25)
+        self.birthDateLabel.textWithAnimation(text: {
+            guard let firstIndexDate = author.author.bio.firstIndex(of: "(") else { return ""}
+            guard let lastIndexDate = author.author.bio.firstIndex(of: ")") else { return ""}
+            return String(author.author.bio[firstIndexDate..<lastIndexDate]).replacingOccurrences(of: "(", with: "")
+        }() + " •", duration: 0.25)
     }
 }
-//
-//extension AuthorPageViewController {
-//
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let position = scrollView.contentOffset.y
-//        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
-//            authorViewModel.getQuotesByAuthor(authorName: authorName)
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
-//}
+
+extension UIView {
+    func makeFadeTransition(inTime duration: CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+        animation.duration = duration
+        layer.add(animation, forKey: CATransitionType.fade.rawValue)
+    }
+}
+
+extension UILabel{
+
+  func animation(typing value:String,duration: Double){
+    let characters = value.map { $0 }
+    var index = 0
+    Timer.scheduledTimer(withTimeInterval: duration, repeats: true, block: { [weak self] timer in
+        if index < value.count {
+            let char = characters[index]
+            self?.text! += "\(char)"
+            index += 1
+        } else {
+            timer.invalidate()
+        }
+    })
+  }
+
+  func textWithAnimation(text:String,duration:CFTimeInterval){
+    fadeTransition(duration)
+    self.text = text
+  }
+
+  func fadeTransition(_ duration:CFTimeInterval) {
+    let animation = CATransition()
+    animation.timingFunction = CAMediaTimingFunction(name:
+        CAMediaTimingFunctionName.easeInEaseOut)
+    animation.type = CATransitionType.fade
+    animation.duration = duration
+    layer.add(animation, forKey: CATransitionType.fade.rawValue)
+  }
+
+}
