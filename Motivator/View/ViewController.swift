@@ -8,7 +8,6 @@
 //TODO: Choose frameworks -> RxSwift, RxCocoa, WikipediaKit, Kingfisher, SideMenu
 
 import UIKit
-import RxSwift
 import TagListView
 import SideMenu
 
@@ -82,7 +81,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
         cell.layoutIfNeeded()
         
-        cell.tagsView.delegate = self
+        cell.delegate = self
         
         cell.contentLabel.text = quoteViewModel.quotes[indexPath.row].quoteContent
         
@@ -183,4 +182,19 @@ extension ViewController: SaveAuthorDelegate {
         print("delegate")
     }
     
+}
+
+extension ViewController: QuoteCellDelegate {
+    var _isLiked: Bool {
+        get {
+            return false
+        }
+        set {
+//            self._isLiked = false
+        }
+    }
+
+    func onLikeButtonClick(_ button: UIButton) {
+        print("like button was tapped!")
+    }
 }
