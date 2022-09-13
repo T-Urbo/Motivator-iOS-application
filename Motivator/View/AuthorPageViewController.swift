@@ -16,6 +16,8 @@ import Kingfisher
 // TODO: - Add author's name on top of the view
 // TODO: - Add label text changing animation
 // TODO: - Fix displaying authorsBio bug (second tap on author's button shows only 2 dots even if data exists)
+
+// TODO: - First it should load authors bio + picture, and only after that - author's quotes
     
 protocol SaveAuthorDelegate {
     func saveAuthor(authorName: String)

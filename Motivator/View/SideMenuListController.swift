@@ -13,7 +13,7 @@ protocol SideMenuListControllerDelegate {
 
 class SideMenuListController: UITableViewController {
     
-    private var menuItems = ["Search", "Quote creator", "Saved"]
+    private var menuItems = ["Quote browser", "Quote creator", "Saved"]
     public var delegate: SideMenuListControllerDelegate?
     
     init(with menuItems: [String]) {

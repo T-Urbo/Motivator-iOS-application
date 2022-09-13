@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4916FAD063867B3C07459A0E /* Pods_Motivator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8F78353E58D4C6043DD939 /* Pods_Motivator.framework */; };
+		C215F57128D0C71E0051E7C3 /* SavedAuthorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C215F56F28D0C71E0051E7C3 /* SavedAuthorCell.xib */; };
+		C215F57228D0C71E0051E7C3 /* SavedAuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C215F57028D0C71E0051E7C3 /* SavedAuthorCell.swift */; };
+		C215F57428D0E0780051E7C3 /* SavedAuthorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C215F57328D0E0770051E7C3 /* SavedAuthorsViewController.swift */; };
+		C215F57628D0E0870051E7C3 /* SavedQuotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C215F57528D0E0870051E7C3 /* SavedQuotesViewController.swift */; };
+		C215F57928D1236C0051E7C3 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C215F57828D1236C0051E7C3 /* CoreDataService.swift */; };
 		C21B9218288DDE05004FCDF6 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21B9217288DDE05004FCDF6 /* MenuController.swift */; };
 		C22772722885A23B0099A8EA /* WikipediaKit in Frameworks */ = {isa = PBXBuildFile; productRef = C22772712885A23B0099A8EA /* WikipediaKit */; };
 		C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */; };
@@ -24,6 +29,10 @@
 		C2AB6CB5287CDE79000A65DF /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */; };
 		C2C0CC71287CFB570046DD42 /* QuoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */; };
 		C2C0CC72287CFB570046DD42 /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0CC70287CFB570046DD42 /* QuoteCell.swift */; };
+		C2CC4C9828CD108D006BC6FE /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC4C9728CD108D006BC6FE /* SideMenuController.swift */; };
+		C2CC4C9A28CD18D4006BC6FE /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC4C9928CD18D4006BC6FE /* SideMenuViewController.swift */; };
+		C2CC4C9E28CD231D006BC6FE /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2CC4C9C28CD231D006BC6FE /* SideMenuCell.xib */; };
+		C2CC4C9F28CD231D006BC6FE /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC4C9D28CD231D006BC6FE /* SideMenuCell.swift */; };
 		C2E08E91287B93310090DD47 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E08E90287B93310090DD47 /* Quote.swift */; };
 		C2E54C1D28772C8D00919396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E54C1C28772C8D00919396 /* AppDelegate.swift */; };
 		C2E54C1F28772C8D00919396 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E54C1E28772C8D00919396 /* SceneDelegate.swift */; };
@@ -38,6 +47,11 @@
 /* Begin PBXFileReference section */
 		3F8F78353E58D4C6043DD939 /* Pods_Motivator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Motivator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		841C50443A53E33225D75847 /* Pods-Motivator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motivator.release.xcconfig"; path = "Target Support Files/Pods-Motivator/Pods-Motivator.release.xcconfig"; sourceTree = "<group>"; };
+		C215F56F28D0C71E0051E7C3 /* SavedAuthorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedAuthorCell.xib; sourceTree = "<group>"; };
+		C215F57028D0C71E0051E7C3 /* SavedAuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAuthorCell.swift; sourceTree = "<group>"; };
+		C215F57328D0E0770051E7C3 /* SavedAuthorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAuthorsViewController.swift; sourceTree = "<group>"; };
+		C215F57528D0E0870051E7C3 /* SavedQuotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedQuotesViewController.swift; sourceTree = "<group>"; };
+		C215F57828D1236C0051E7C3 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		C21B9217288DDE05004FCDF6 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = OscarWilde.jpeg; path = ../../../../../Desktop/OscarWilde.jpeg; sourceTree = "<group>"; };
 		C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorPageViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +67,10 @@
 		C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuoteCell.xib; sourceTree = "<group>"; };
 		C2C0CC70287CFB570046DD42 /* QuoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
+		C2CC4C9728CD108D006BC6FE /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		C2CC4C9928CD18D4006BC6FE /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		C2CC4C9C28CD231D006BC6FE /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
+		C2CC4C9D28CD231D006BC6FE /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		C2E08E90287B93310090DD47 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		C2E54C1928772C8C00919396 /* Motivator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motivator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E54C1C28772C8D00919396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +115,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C215F57728D123330051E7C3 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				C215F57828D1236C0051E7C3 /* CoreDataService.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		C229B8C2287F64E9006EDAEC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,11 +141,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		C2AB6CB8287CE5D7000A65DF /* Screens */ = {
+		C2CC4C9B28CD22F0006BC6FE /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				C2CC4C9928CD18D4006BC6FE /* SideMenuViewController.swift */,
+				C2CC4C9C28CD231D006BC6FE /* SideMenuCell.xib */,
+				C2CC4C9D28CD231D006BC6FE /* SideMenuCell.swift */,
 			);
-			path = Screens;
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		C2E08E8F287B92FF0090DD47 /* Model */ = {
@@ -134,6 +163,7 @@
 		C2E08E94287B994E0090DD47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2CC4C9B28CD22F0006BC6FE /* SideMenu */,
 				C2E54C2028772C8D00919396 /* ViewController.swift */,
 				C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */,
 				C2AB6CB0287CDC74000A65DF /* QuoteController.swift */,
@@ -147,6 +177,10 @@
 				C2A486D828AE91880074D51F /* SavedContentViewController.swift */,
 				C270B44628BA41E000F2BACC /* TagsPageViewController.swift */,
 				C270B44828BA468A00F2BACC /* TagsSearchPageViewController.swift */,
+				C215F56F28D0C71E0051E7C3 /* SavedAuthorCell.xib */,
+				C215F57028D0C71E0051E7C3 /* SavedAuthorCell.swift */,
+				C215F57328D0E0770051E7C3 /* SavedAuthorsViewController.swift */,
+				C215F57528D0E0870051E7C3 /* SavedQuotesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -154,6 +188,7 @@
 		C2E08E95287B995D0090DD47 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C2CC4C9728CD108D006BC6FE /* SideMenuController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -179,8 +214,8 @@
 		C2E54C1B28772C8C00919396 /* Motivator */ = {
 			isa = PBXGroup;
 			children = (
+				C215F57728D123330051E7C3 /* Database */,
 				C229B8C2287F64E9006EDAEC /* Resources */,
-				C2AB6CB8287CE5D7000A65DF /* Screens */,
 				C2AB6CB3287CDE56000A65DF /* ViewModel */,
 				C2E08E8F287B92FF0090DD47 /* Model */,
 				C2E08E94287B994E0090DD47 /* View */,
@@ -263,6 +298,8 @@
 				C2C0CC71287CFB570046DD42 /* QuoteCell.xib in Resources */,
 				C2A486D928AE91890074D51F /* SavedContentViewController.xib in Resources */,
 				C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */,
+				C2CC4C9E28CD231D006BC6FE /* SideMenuCell.xib in Resources */,
+				C215F57128D0C71E0051E7C3 /* SavedAuthorCell.xib in Resources */,
 				C25E14002885C0C4002A11A1 /* noPhotoImage.jpeg in Resources */,
 				C2E54C2C28772C9000919396 /* LaunchScreen.storyboard in Resources */,
 				C2E54C2928772C9000919396 /* Assets.xcassets in Resources */,
@@ -319,8 +356,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C215F57628D0E0870051E7C3 /* SavedQuotesViewController.swift in Sources */,
+				C215F57428D0E0780051E7C3 /* SavedAuthorsViewController.swift in Sources */,
 				C25E13EF2885B96D002A11A1 /* AuthorImage.swift in Sources */,
 				C2C0CC72287CFB570046DD42 /* QuoteCell.swift in Sources */,
+				C215F57928D1236C0051E7C3 /* CoreDataService.swift in Sources */,
 				C270B44728BA41E000F2BACC /* TagsPageViewController.swift in Sources */,
 				C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */,
 				C2AB6CB5287CDE79000A65DF /* QuoteViewModel.swift in Sources */,
@@ -330,11 +370,15 @@
 				C2EFA7B028A67C120000F91A /* SideMenuListController.swift in Sources */,
 				C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */,
 				C2E54C2128772C8D00919396 /* ViewController.swift in Sources */,
+				C2CC4C9F28CD231D006BC6FE /* SideMenuCell.swift in Sources */,
 				C25E643628AFBC2B002E4042 /* AuthorViewModel.swift in Sources */,
 				C2E54C1D28772C8D00919396 /* AppDelegate.swift in Sources */,
+				C2CC4C9828CD108D006BC6FE /* SideMenuController.swift in Sources */,
 				C24B973A288829EC0081C98F /* Author.swift in Sources */,
 				C2E54C1F28772C8D00919396 /* SceneDelegate.swift in Sources */,
 				C2E08E91287B93310090DD47 /* Quote.swift in Sources */,
+				C215F57228D0C71E0051E7C3 /* SavedAuthorCell.swift in Sources */,
+				C2CC4C9A28CD18D4006BC6FE /* SideMenuViewController.swift in Sources */,
 				C2E54C2728772C8D00919396 /* Motivator.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

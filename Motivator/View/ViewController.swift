@@ -11,34 +11,34 @@ import UIKit
 import TagListView
 import SideMenu
 
-class ViewController: UIViewController, TagListViewDelegate, SideMenuListControllerDelegate {
+class ViewController: UIViewController, TagListViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var sideMenuButton: UIBarButtonItem!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    //    @IBOutlet weak var sideMenuView: UIView!
+    
     
     var quoteController = QuoteController()
     var quoteViewModel = QuoteViewModel()
     var tempTagsArray = [String]()
     var savedAuthorsArray: [Author] = [Author]()
+    private var sideMenuViewController: SideMenuViewController!
     
     var url: String = "https://api.quotable.io/random"
     
     let nib = UINib(nibName: "QuoteCell", bundle: nil)
     let cellId = "quotecellid"
     
-//    let viewControllerSegueIdentifier = "show_author_view_controller"
-
-    private var sideMenu: SideMenuNavigationController?
-    let menu = SideMenuListController(with: ["🔎 Search", "✍️ Quote creator", "💾 Saved"])
-    
+    var sideMenu = SideMenuViewController()
+    var revealSideMenuOnTop: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationController()
         setupTableView()
-        setupSideMenu()
-        
+//        setupSideMenu()
+            
         
         quoteViewModel.getQuote(from: url) { (quote, error) in
             if quote != nil {
@@ -49,25 +49,20 @@ class ViewController: UIViewController, TagListViewDelegate, SideMenuListControl
         }
     }
     
-    @IBAction func onSideMenuButtonClick(_ sender: Any) {
-        sideMenu!.pushStyle = .default
-        present(sideMenu!, animated: true)
-    }
-    
-    func didSelectMenuItem(named: String) {
-        sideMenu?.dismiss(animated: true, completion: {
-            print("\(named) button was pressed")
-            
-            switch named {
-                case "Search": print("0") // push Search vc
-                case "Quote creator": print("1") // push Quote creator vc
-                case "Saved": print("2") // push Saved content vc
-                default: print("...")
-            }
-        })
+    @IBAction func onMenuButtonClick(_ sender: Any) {
+        
     }
     
     
+    func setupSideMenu() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        self.sideMenuViewController = storyboard.instantiateViewController(withIdentifier: "sidemenuvc") as? SideMenuViewController
+//        self.sideMenuViewController.defaultHighlightedCell = 0 // Default Highlighted Cell
+//        self.sideMenuViewController.delegate = self
+        view.insertSubview(self.sideMenuViewController!.view, at: self.revealSideMenuOnTop ? 2 : 0)
+        addChild(self.sideMenuViewController!)
+        self.sideMenuViewController!.didMove(toParent: self)
+    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -80,7 +75,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quotecellid", for: indexPath) as! QuoteCell
         cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
         cell.layoutIfNeeded()
-        
+        cell.selectionStyle = .none
         cell.delegate = self
         
         cell.contentLabel.text = quoteViewModel.quotes[indexPath.row].quoteContent
@@ -138,14 +133,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.showsVerticalScrollIndicator = false
     }
     
-    func setupSideMenu() {
-        self.menu.delegate = self
-        self.sideMenu = SideMenuNavigationController(rootViewController: menu)
-        self.sideMenu?.leftSide = true
-        self.sideMenu?.setNavigationBarHidden(true, animated: false)
-        SideMenuManager.default.leftMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
-    }
+//    func setupSideMenu() {
+//        self.sideMenu = SideMenuNavigationController(rootViewController: menu)
+//        self.sideMenu?.leftSide = true
+//        self.sideMenu?.setNavigationBarHidden(true, animated: false)
+//        SideMenuManager.default.leftMenuNavigationController = sideMenu
+//        SideMenuManager.default.addPanGestureToPresent(toView: view)
+//    }
     
     func getUniqueElements(from array: [String]) -> [String] {
         //Create an empty Set to track unique items

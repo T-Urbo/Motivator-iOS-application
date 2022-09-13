@@ -1,23 +1,21 @@
 //
-//  SavedContentViewController.swift
+//  SavedQuotesViewController.swift
 //  Motivator
 //
-//  Created by Timothey Urbanovich on 18/08/2022.
+//  Created by Timothey Urbanovich on 13/09/2022.
 //
 
 import UIKit
 
-class SavedContentViewController: UIViewController {
+class SavedQuotesViewController: UIViewController {
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
     
+
     /*
     // MARK: - Navigation
 
