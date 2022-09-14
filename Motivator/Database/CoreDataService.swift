@@ -10,7 +10,26 @@ import UIKit
 import CoreData
 
 class CoreDataService {
-    private var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let persistantContainer: NSPersistentContainer
+    static let shared: CoreDataService = CoreDataService()
+    
+    init() {
+        persistantContainer = NSPersistentContainer(name: "SavedContent")
+        persistantContainer.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Unable To Initialize Core Data: \(error)")
+            }
+            
+            
+            
+        }
+    }
+    
+    func fetchItems() {
+        
+    }
     
     func saveDataToMemory() {
         

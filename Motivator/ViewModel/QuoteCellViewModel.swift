@@ -1,5 +1,5 @@
 //
-//  QuoteCell.swift
+//  QuoteCellViewModel.swift
 //  Motivator
 //
 //  Created by Timothey Urbanovich on 12/07/2022.
@@ -11,12 +11,15 @@
 import UIKit
 import TagListView
 
-protocol QuoteCellDelegate: AnyObject {
-    var _isLiked: Bool {get set}
-    func onLikeButtonClick(_ button: UIButton)
+
+protocol QuoteCellViewModelDelegate: AnyObject {
+    
+    // add onAuthorButtonClikc function here instead of ViewControllers
+    var _isLiked: Bool { get set }
+    func onLikeButtonClick(_ sender: UIButton)
 }
 
-class QuoteCell: UITableViewCell, TagListViewDelegate {
+class QuoteCellViewModel: UITableViewCell, TagListViewDelegate {
 
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var authorButton: UIButton!
@@ -30,7 +33,7 @@ class QuoteCell: UITableViewCell, TagListViewDelegate {
     }
     private var animate = false
     
-    weak var delegate: QuoteCellDelegate?
+    weak var delegate: QuoteCellViewModelDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,15 +47,13 @@ class QuoteCell: UITableViewCell, TagListViewDelegate {
         contentLabel.isUserInteractionEnabled = true
         contentLabel.addGestureRecognizer(doubleTap)
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//    }
     
     // MARK: - Quote like function
     
     @IBAction func onLikeButtonClick(_ sender: Any) {
         isLiked = !isLiked
+        delegate?._isLiked = isLiked
+        
         switch isLiked {
         case true:
             if let image = UIImage(systemName: "heart.fill") {
@@ -66,8 +67,8 @@ class QuoteCell: UITableViewCell, TagListViewDelegate {
             }
         }
         
-        
-        
+        delegate?.onLikeButtonClick(sender as! UIButton)
+        print("delegate?._isLiked = isLiked: \(delegate?._isLiked)")
         print("like button was printed!, isLiked: \(isLiked)")
     }
     
@@ -88,7 +89,7 @@ class QuoteCell: UITableViewCell, TagListViewDelegate {
     
     
     @IBAction func onAuthorButtonClick(_ sender: UIButton) {
-        
+        print("onAuthorButtonClick QuoteCellViewModel")
     }
     
     @objc func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {

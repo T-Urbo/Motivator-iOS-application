@@ -58,7 +58,7 @@
 //    }
 //    
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "quotecellid", for: indexPath) as! QuoteCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "QuoteCellViewModelid", for: indexPath) as! QuoteCellViewModel
 //        cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
 //        cell.layoutIfNeeded()
 //        

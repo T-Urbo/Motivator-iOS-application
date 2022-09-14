@@ -15,7 +15,7 @@ class QuoteController: UITableViewController {
 //    }
 //
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "quotecell", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "QuoteCellViewModel", for: indexPath)
 //        
 //        cell.textLabel?.text = quoteViewModels[indexPath.row].quoteAuthor
 //        cell.detailTextLabel?.text = quoteViewModels[indexPath.row].quoteContent
@@ -63,7 +63,7 @@ class QuoteController: UITableViewController {
 //    }
 //    
 //    func setupTableView() {
-//        tableView.register(QuoteCell.self, forCellReuseIdentifier: cellId)
+//        tableView.register(QuoteCellViewModel.self, forCellReuseIdentifier: cellId)
 //        tableView.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
 //        tableView.backgroundColor = .blue
 //        tableView.rowHeight = UITableView.automaticDimension

@@ -17,6 +17,11 @@
 		C22772722885A23B0099A8EA /* WikipediaKit in Frameworks */ = {isa = PBXBuildFile; productRef = C22772712885A23B0099A8EA /* WikipediaKit */; };
 		C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */; };
 		C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */; };
+		C23E708628D2467D00D0D4FF /* SavedQuote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23E708228D2467C00D0D4FF /* SavedQuote+CoreDataClass.swift */; };
+		C23E708728D2467D00D0D4FF /* SavedAuthor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23E708328D2467C00D0D4FF /* SavedAuthor+CoreDataProperties.swift */; };
+		C23E708828D2467D00D0D4FF /* SavedAuthor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23E708428D2467C00D0D4FF /* SavedAuthor+CoreDataClass.swift */; };
+		C23E708B28D24B0600D0D4FF /* CoreDataQuoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23E708A28D24B0600D0D4FF /* CoreDataQuoteModel.swift */; };
+		C23E708D28D24B9800D0D4FF /* SavedQuote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23E708C28D24B9800D0D4FF /* SavedQuote+CoreDataProperties.swift */; };
 		C24B973A288829EC0081C98F /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B9739288829EC0081C98F /* Author.swift */; };
 		C25E13EF2885B96D002A11A1 /* AuthorImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25E13EE2885B96D002A11A1 /* AuthorImage.swift */; };
 		C25E14002885C0C4002A11A1 /* noPhotoImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C25E13FF2885C0C4002A11A1 /* noPhotoImage.jpeg */; };
@@ -27,8 +32,8 @@
 		C2A486DA28AE91890074D51F /* SavedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A486D828AE91880074D51F /* SavedContentViewController.swift */; };
 		C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB6CB0287CDC74000A65DF /* QuoteController.swift */; };
 		C2AB6CB5287CDE79000A65DF /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */; };
-		C2C0CC71287CFB570046DD42 /* QuoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */; };
-		C2C0CC72287CFB570046DD42 /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0CC70287CFB570046DD42 /* QuoteCell.swift */; };
+		C2C0CC71287CFB570046DD42 /* QuoteCellViewModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C0CC6F287CFB570046DD42 /* QuoteCellViewModel.xib */; };
+		C2C0CC72287CFB570046DD42 /* QuoteCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0CC70287CFB570046DD42 /* QuoteCellViewModel.swift */; };
 		C2CC4C9828CD108D006BC6FE /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC4C9728CD108D006BC6FE /* SideMenuController.swift */; };
 		C2CC4C9A28CD18D4006BC6FE /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC4C9928CD18D4006BC6FE /* SideMenuViewController.swift */; };
 		C2CC4C9E28CD231D006BC6FE /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2CC4C9C28CD231D006BC6FE /* SideMenuCell.xib */; };
@@ -55,6 +60,11 @@
 		C21B9217288DDE05004FCDF6 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C229B8C3287F6501006EDAEC /* OscarWilde.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = OscarWilde.jpeg; path = ../../../../../Desktop/OscarWilde.jpeg; sourceTree = "<group>"; };
 		C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorPageViewController.swift; sourceTree = "<group>"; };
+		C23E708228D2467C00D0D4FF /* SavedQuote+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedQuote+CoreDataClass.swift"; path = "Motivator/Database/SavedQuote+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		C23E708328D2467C00D0D4FF /* SavedAuthor+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedAuthor+CoreDataProperties.swift"; path = "Motivator/Database/SavedAuthor+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		C23E708428D2467C00D0D4FF /* SavedAuthor+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedAuthor+CoreDataClass.swift"; path = "Motivator/Database/SavedAuthor+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		C23E708A28D24B0600D0D4FF /* CoreDataQuoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataQuoteModel.swift; sourceTree = "<group>"; };
+		C23E708C28D24B9800D0D4FF /* SavedQuote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SavedQuote+CoreDataProperties.swift"; path = "/Users/timotheyurbanovich/Library/Autosave Information/Motivator/Motivator/Database/DatabaseModel/SavedQuote+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		C24B9739288829EC0081C98F /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		C25E13EE2885B96D002A11A1 /* AuthorImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorImage.swift; sourceTree = "<group>"; };
 		C25E13FF2885C0C4002A11A1 /* noPhotoImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = noPhotoImage.jpeg; path = ../../../../../Desktop/noPhotoImage.jpeg; sourceTree = "<group>"; };
@@ -65,8 +75,8 @@
 		C2A486D828AE91880074D51F /* SavedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedContentViewController.swift; sourceTree = "<group>"; };
 		C2AB6CB0287CDC74000A65DF /* QuoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteController.swift; sourceTree = "<group>"; };
 		C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
-		C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuoteCell.xib; sourceTree = "<group>"; };
-		C2C0CC70287CFB570046DD42 /* QuoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
+		C2C0CC6F287CFB570046DD42 /* QuoteCellViewModel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuoteCellViewModel.xib; sourceTree = "<group>"; };
+		C2C0CC70287CFB570046DD42 /* QuoteCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCellViewModel.swift; sourceTree = "<group>"; };
 		C2CC4C9728CD108D006BC6FE /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		C2CC4C9928CD18D4006BC6FE /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		C2CC4C9C28CD231D006BC6FE /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
@@ -118,6 +128,7 @@
 		C215F57728D123330051E7C3 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				C23E708128D2466D00D0D4FF /* DatabaseModel */,
 				C215F57828D1236C0051E7C3 /* CoreDataService.swift */,
 			);
 			path = Database;
@@ -132,9 +143,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C23E708128D2466D00D0D4FF /* DatabaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				C23E708228D2467C00D0D4FF /* SavedQuote+CoreDataClass.swift */,
+				C23E708C28D24B9800D0D4FF /* SavedQuote+CoreDataProperties.swift */,
+				C23E708428D2467C00D0D4FF /* SavedAuthor+CoreDataClass.swift */,
+				C23E708328D2467C00D0D4FF /* SavedAuthor+CoreDataProperties.swift */,
+				C23E708A28D24B0600D0D4FF /* CoreDataQuoteModel.swift */,
+			);
+			path = DatabaseModel;
+			sourceTree = "<group>";
+		};
 		C2AB6CB3287CDE56000A65DF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C2C0CC6F287CFB570046DD42 /* QuoteCellViewModel.xib */,
+				C2C0CC70287CFB570046DD42 /* QuoteCellViewModel.swift */,
 				C25E643528AFBC2B002E4042 /* AuthorViewModel.swift */,
 				C2AB6CB4287CDE79000A65DF /* QuoteViewModel.swift */,
 			);
@@ -164,13 +189,11 @@
 			isa = PBXGroup;
 			children = (
 				C2CC4C9B28CD22F0006BC6FE /* SideMenu */,
-				C2E54C2028772C8D00919396 /* ViewController.swift */,
 				C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */,
-				C2AB6CB0287CDC74000A65DF /* QuoteController.swift */,
-				C2C0CC6F287CFB570046DD42 /* QuoteCell.xib */,
-				C2C0CC70287CFB570046DD42 /* QuoteCell.swift */,
-				C2E54C2228772C8D00919396 /* Main.storyboard */,
+				C2E54C2028772C8D00919396 /* ViewController.swift */,
 				C25E13EE2885B96D002A11A1 /* AuthorImage.swift */,
+				C2AB6CB0287CDC74000A65DF /* QuoteController.swift */,
+				C2E54C2228772C8D00919396 /* Main.storyboard */,
 				C21B9217288DDE05004FCDF6 /* MenuController.swift */,
 				C2EFA7AF28A67C110000F91A /* SideMenuListController.swift */,
 				C2A486D728AE91880074D51F /* SavedContentViewController.xib */,
@@ -295,7 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2C0CC71287CFB570046DD42 /* QuoteCell.xib in Resources */,
+				C2C0CC71287CFB570046DD42 /* QuoteCellViewModel.xib in Resources */,
 				C2A486D928AE91890074D51F /* SavedContentViewController.xib in Resources */,
 				C229B8C4287F6501006EDAEC /* OscarWilde.jpeg in Resources */,
 				C2CC4C9E28CD231D006BC6FE /* SideMenuCell.xib in Resources */,
@@ -359,7 +382,7 @@
 				C215F57628D0E0870051E7C3 /* SavedQuotesViewController.swift in Sources */,
 				C215F57428D0E0780051E7C3 /* SavedAuthorsViewController.swift in Sources */,
 				C25E13EF2885B96D002A11A1 /* AuthorImage.swift in Sources */,
-				C2C0CC72287CFB570046DD42 /* QuoteCell.swift in Sources */,
+				C2C0CC72287CFB570046DD42 /* QuoteCellViewModel.swift in Sources */,
 				C215F57928D1236C0051E7C3 /* CoreDataService.swift in Sources */,
 				C270B44728BA41E000F2BACC /* TagsPageViewController.swift in Sources */,
 				C2AB6CB1287CDC74000A65DF /* QuoteController.swift in Sources */,
@@ -367,12 +390,16 @@
 				C270B44928BA468A00F2BACC /* TagsSearchPageViewController.swift in Sources */,
 				C2A486DA28AE91890074D51F /* SavedContentViewController.swift in Sources */,
 				C21B9218288DDE05004FCDF6 /* MenuController.swift in Sources */,
+				C23E708D28D24B9800D0D4FF /* SavedQuote+CoreDataProperties.swift in Sources */,
 				C2EFA7B028A67C120000F91A /* SideMenuListController.swift in Sources */,
+				C23E708628D2467D00D0D4FF /* SavedQuote+CoreDataClass.swift in Sources */,
 				C229B8C7287F6613006EDAEC /* AuthorPageViewController.swift in Sources */,
+				C23E708828D2467D00D0D4FF /* SavedAuthor+CoreDataClass.swift in Sources */,
 				C2E54C2128772C8D00919396 /* ViewController.swift in Sources */,
 				C2CC4C9F28CD231D006BC6FE /* SideMenuCell.swift in Sources */,
 				C25E643628AFBC2B002E4042 /* AuthorViewModel.swift in Sources */,
 				C2E54C1D28772C8D00919396 /* AppDelegate.swift in Sources */,
+				C23E708728D2467D00D0D4FF /* SavedAuthor+CoreDataProperties.swift in Sources */,
 				C2CC4C9828CD108D006BC6FE /* SideMenuController.swift in Sources */,
 				C24B973A288829EC0081C98F /* Author.swift in Sources */,
 				C2E54C1F28772C8D00919396 /* SceneDelegate.swift in Sources */,
@@ -380,6 +407,7 @@
 				C215F57228D0C71E0051E7C3 /* SavedAuthorCell.swift in Sources */,
 				C2CC4C9A28CD18D4006BC6FE /* SideMenuViewController.swift in Sources */,
 				C2E54C2728772C8D00919396 /* Motivator.xcdatamodeld in Sources */,
+				C23E708B28D24B0600D0D4FF /* CoreDataQuoteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

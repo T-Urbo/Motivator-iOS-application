@@ -10,6 +10,7 @@
 import UIKit
 import TagListView
 import SideMenu
+import RxSwift
 
 class ViewController: UIViewController, TagListViewDelegate {
     
@@ -17,20 +18,25 @@ class ViewController: UIViewController, TagListViewDelegate {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     //    @IBOutlet weak var sideMenuView: UIView!
     
-    
     var quoteController = QuoteController()
     var quoteViewModel = QuoteViewModel()
     var tempTagsArray = [String]()
     var savedAuthorsArray: [Author] = [Author]()
     private var sideMenuViewController: SideMenuViewController!
     
+    lazy var coreDataService = CoreDataService()
+    let disposeBag = DisposeBag()
+    var quoteObserver = PublishSubject<CoreDataQuoteModel>()
+    
     var url: String = "https://api.quotable.io/random"
     
-    let nib = UINib(nibName: "QuoteCell", bundle: nil)
-    let cellId = "quotecellid"
+    let nib = UINib(nibName: "QuoteCellViewModel", bundle: nil)
+    let cellId = "QuoteCellViewModelid"
     
     var sideMenu = SideMenuViewController()
     var revealSideMenuOnTop: Bool = true
+    
+    var isLiked: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +78,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "quotecellid", for: indexPath) as! QuoteCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "QuoteCellViewModelid", for: indexPath) as! QuoteCellViewModel
         cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
         cell.layoutIfNeeded()
         cell.selectionStyle = .none
@@ -87,6 +93,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.tagsView.removeAllTags()
         cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
         cell.tagsView.delegate = self
+        
+        cell.likeButton.tag = indexPath.row
         
         return cell
     }
@@ -133,14 +141,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.showsVerticalScrollIndicator = false
     }
     
-//    func setupSideMenu() {
-//        self.sideMenu = SideMenuNavigationController(rootViewController: menu)
-//        self.sideMenu?.leftSide = true
-//        self.sideMenu?.setNavigationBarHidden(true, animated: false)
-//        SideMenuManager.default.leftMenuNavigationController = sideMenu
-//        SideMenuManager.default.addPanGestureToPresent(toView: view)
-//    }
-    
     func getUniqueElements(from array: [String]) -> [String] {
         //Create an empty Set to track unique items
         var set = Set<String>()
@@ -178,17 +178,36 @@ extension ViewController: SaveAuthorDelegate {
     
 }
 
-extension ViewController: QuoteCellDelegate {
+extension ViewController: QuoteCellViewModelDelegate {
+    
     var _isLiked: Bool {
         get {
-            return false
+            return self.isLiked
         }
         set {
-//            self._isLiked = false
+            
         }
     }
-
-    func onLikeButtonClick(_ button: UIButton) {
-        print("like button was tapped!")
+    
+    func onLikeButtonClick(_ sender: UIButton) {
+        print("BUTTON WAS TAPPED DELEGATE!!!: \(sender.tag)")
+        isLiked = !isLiked
+        let savedQuote = CoreDataQuoteModel(quoteModel: quoteViewModel.quotes[sender.tag])
+        
+        print(savedQuote.quoteModel)
+        
+        switch isLiked {
+        case true:
+            do {
+                try coreDataService.viewContext.save()
+            } catch {
+                print(error)
+            }
+        case false:
+            print("FALSE!")
+        }
+        
+        
+        
     }
 }

@@ -16,8 +16,8 @@ class TagsSearchPageViewController: ViewController {
     
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var tagsSearchPageTableView: UITableView!
-//    let nib = UINib(nibName: "QuoteCell", bundle: nil)
-//    let cellId = "quotecellid"
+//    let nib = UINib(nibName: "QuoteCellViewModel", bundle: nil)
+//    let cellId = "QuoteCellViewModelid"
     
 //    var quoteViewModel = QuoteViewModel()
     
@@ -79,7 +79,7 @@ class TagsSearchPageViewController: ViewController {
 //    }
 //
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "quotecellid", for: indexPath) as! QuoteCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "QuoteCellViewModelid", for: indexPath) as! QuoteCellViewModel
 //        cell.frame = CGRect(x: 0, y: cell.frame.origin.y, width: tableView.frame.size.width, height: cell.frame.size.height)
 //        cell.layoutIfNeeded()
 //
