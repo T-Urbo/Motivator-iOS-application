@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Motivator
-//
-//  Created by Timothey Urbanovich on 07/07/2022.
-//
-
 //TODO: Choose frameworks -> RxSwift, RxCocoa, WikipediaKit, Kingfisher, SideMenu
 
 import UIKit
@@ -19,7 +12,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     //    @IBOutlet weak var sideMenuView: UIView!
     
     var quoteController = QuoteController()
-    var quoteViewModel = QuoteViewModel()
+    public var quoteViewModel = QuoteViewModel()
     var tempTagsArray = [String]()
     var savedAuthorsArray: [Author] = [Author]()
     private var sideMenuViewController: SideMenuViewController!
@@ -88,7 +81,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.authorButton.setTitle(quoteViewModel.quotes[indexPath.row].quoteAuthor, for: .normal)
         cell.authorButton.tag = indexPath.row
-        cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
         
         cell.tagsView.removeAllTags()
         cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
@@ -97,17 +89,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.likeButton.tag = indexPath.row
         
         return cell
-    }
-    
-    @objc func onAuthorButtonClick(_ button: UIButton) {
-        print("the button with tag: \(button.tag) clicked in cell!")
-        if let authorpagevc = storyboard?.instantiateViewController(identifier: "apvc") as? AuthorPageViewController {
-            authorpagevc.authorName = (button.titleLabel?.text!)!
-            self.present(authorpagevc, animated: true, completion: nil)
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
     
     @objc func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
@@ -170,7 +151,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - SaveAuthorDelegate protocol implementation
+// MARK: - SaveAuthorDelegate protocol
 extension ViewController: SaveAuthorDelegate {
     func saveAuthor(authorName: String) {
         print("delegate")
@@ -206,8 +187,17 @@ extension ViewController: QuoteCellViewModelDelegate {
         case false:
             print("FALSE!")
         }
-        
-        
-        
     }
+    
+    func onAuthorButtonClick(_ sender: UIButton) {
+        print("the button with tag: \(sender.tag) clicked in cell!")
+        if let authorpagevc = storyboard?.instantiateViewController(identifier: "apvc") as? AuthorPageViewController {
+            authorpagevc.authorName = (sender.titleLabel?.text!)!
+            self.present(authorpagevc, animated: true, completion: nil)
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
 }

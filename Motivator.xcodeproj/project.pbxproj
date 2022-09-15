@@ -155,6 +155,20 @@
 			path = DatabaseModel;
 			sourceTree = "<group>";
 		};
+		C2853D2728D35D9A008B4125 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C2E54C2028772C8D00919396 /* ViewController.swift */,
+				C270B44828BA468A00F2BACC /* TagsSearchPageViewController.swift */,
+				C270B44628BA41E000F2BACC /* TagsPageViewController.swift */,
+				C2A486D828AE91880074D51F /* SavedContentViewController.swift */,
+				C215F57328D0E0770051E7C3 /* SavedAuthorsViewController.swift */,
+				C215F57528D0E0870051E7C3 /* SavedQuotesViewController.swift */,
+				C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		C2AB6CB3287CDE56000A65DF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,22 +202,16 @@
 		C2E08E94287B994E0090DD47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C2853D2728D35D9A008B4125 /* ViewController */,
 				C2CC4C9B28CD22F0006BC6FE /* SideMenu */,
-				C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */,
-				C2E54C2028772C8D00919396 /* ViewController.swift */,
 				C25E13EE2885B96D002A11A1 /* AuthorImage.swift */,
 				C2AB6CB0287CDC74000A65DF /* QuoteController.swift */,
 				C2E54C2228772C8D00919396 /* Main.storyboard */,
 				C21B9217288DDE05004FCDF6 /* MenuController.swift */,
 				C2EFA7AF28A67C110000F91A /* SideMenuListController.swift */,
 				C2A486D728AE91880074D51F /* SavedContentViewController.xib */,
-				C2A486D828AE91880074D51F /* SavedContentViewController.swift */,
-				C270B44628BA41E000F2BACC /* TagsPageViewController.swift */,
-				C270B44828BA468A00F2BACC /* TagsSearchPageViewController.swift */,
 				C215F56F28D0C71E0051E7C3 /* SavedAuthorCell.xib */,
 				C215F57028D0C71E0051E7C3 /* SavedAuthorCell.swift */,
-				C215F57328D0E0770051E7C3 /* SavedAuthorsViewController.swift */,
-				C215F57528D0E0870051E7C3 /* SavedQuotesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

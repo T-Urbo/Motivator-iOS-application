@@ -98,7 +98,7 @@ extension AuthorPageViewController {
         cell.tagsView.removeAllTags()
         cell.tagsView.addTags(quoteViewModel.quotes[indexPath.row].quoteTags)
         cell.authorButton.tag = indexPath.row
-        cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
+//        cell.authorButton.addTarget(self, action: #selector(onAuthorButtonClick(_:)), for: .touchUpInside)
         
         // cell.authorButton - try to disable the author button
         

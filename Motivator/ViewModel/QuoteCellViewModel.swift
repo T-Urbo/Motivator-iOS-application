@@ -17,6 +17,7 @@ protocol QuoteCellViewModelDelegate: AnyObject {
     // add onAuthorButtonClikc function here instead of ViewControllers
     var _isLiked: Bool { get set }
     func onLikeButtonClick(_ sender: UIButton)
+    func onAuthorButtonClick(_ sender: UIButton)
 }
 
 class QuoteCellViewModel: UITableViewCell, TagListViewDelegate {
@@ -89,7 +90,7 @@ class QuoteCellViewModel: UITableViewCell, TagListViewDelegate {
     
     
     @IBAction func onAuthorButtonClick(_ sender: UIButton) {
-        print("onAuthorButtonClick QuoteCellViewModel")
+        delegate?.onAuthorButtonClick(sender as! UIButton)
     }
     
     @objc func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
