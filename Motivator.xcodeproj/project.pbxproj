@@ -165,6 +165,7 @@
 				C215F57328D0E0770051E7C3 /* SavedAuthorsViewController.swift */,
 				C215F57528D0E0870051E7C3 /* SavedQuotesViewController.swift */,
 				C229B8C6287F6613006EDAEC /* AuthorPageViewController.swift */,
+				C2CC4C9928CD18D4006BC6FE /* SideMenuViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -183,7 +184,6 @@
 		C2CC4C9B28CD22F0006BC6FE /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				C2CC4C9928CD18D4006BC6FE /* SideMenuViewController.swift */,
 				C2CC4C9C28CD231D006BC6FE /* SideMenuCell.xib */,
 				C2CC4C9D28CD231D006BC6FE /* SideMenuCell.swift */,
 			);

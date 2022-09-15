@@ -8,7 +8,7 @@
 import Foundation
 
 public class CoreDataQuoteModel: NSObject {
-    let quoteModel: QuoteModel
+    var quoteModel: QuoteModel
     
     init(quoteModel: QuoteModel) {
         self.quoteModel = quoteModel

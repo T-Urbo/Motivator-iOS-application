@@ -130,20 +130,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="36J-BH-LMN">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="BLw-eP-8la">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ZQJ-oU-jim">
-                                <rect key="frame" x="20" y="5" width="75" height="34.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="line.horizontal.3" catalog="system" title=""/>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" image="line.3.horizontal" catalog="system" id="2PF-xi-NbN">
                             <connections>
-                                <action selector="onMenuButtonClick:" destination="BYZ-38-t0r" id="nre-c4-H1K"/>
+                                <action selector="onMenuButtonClick:" destination="BYZ-38-t0r" id="LVd-gt-ryc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="menuButton" destination="BLw-eP-8la" id="9on-FQ-miX"/>
+                        <outlet property="menuButton" destination="2PF-xi-NbN" id="IQv-92-gZE"/>
                         <outlet property="tableView" destination="6F4-iZ-8ua" id="Am8-mo-8WS"/>
                         <segue destination="urE-bU-qKt" kind="show" identifier="show_author_view_controller" id="j9d-Vi-hWm"/>
                     </connections>
@@ -419,6 +413,7 @@
                             <constraint firstItem="yk6-6I-mg5" firstAttribute="leading" secondItem="wY9-tY-vgU" secondAttribute="leading" constant="16" id="g3w-OU-vxd"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="zGV-h0-sty"/>
                     <size key="freeformSize" width="280" height="896"/>
                     <connections>
                         <outlet property="addQuoteButton" destination="ufq-9T-E9U" id="IgS-Qz-6cj"/>
@@ -439,7 +434,7 @@
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
-        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+        <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

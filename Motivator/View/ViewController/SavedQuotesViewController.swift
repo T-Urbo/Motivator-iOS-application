@@ -1,21 +1,33 @@
 import UIKit
-import RxSwift
 import TagListView
 
 class SavedQuotesViewController: UIViewController {
 
     @IBOutlet weak var savedQuotesTableView: UITableView!
     
-    private var savedQuotes: [CoreDataQuoteModel] = []
+    private var savedQuotes: [SavedQuote] = []
     private var coreDataService = CoreDataService()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTableView()
+        fetchSavedQuotes()
+    }
+    
+    private func fetchSavedQuotes() {
+        do {
+            self.savedQuotes = try coreDataService.viewContext.fetch(SavedQuote.fetchRequest())
+            DispatchQueue.main.async {
+                self.savedQuotesTableView.reloadData()
+            }
+        } catch {
+            
+        }
     }
 }
 
-// MARK: - SavedQuotesViewController tableView Delegate and DataSource protocols conformance
+// MARK: - SavedQuotesViewController tableView Delegate and DataSource protocols conformance and setup
 
 extension SavedQuotesViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -30,18 +42,24 @@ extension SavedQuotesViewController: UITableViewDelegate, UITableViewDataSource 
         cell.selectionStyle = .none
         cell.delegate = self
         
-        cell.contentLabel.text = savedQuotes[indexPath.row].quoteModel.quoteContent
+        cell.contentLabel.text = savedQuotes[indexPath.row].quote!.quoteModel.quoteContent
         
-        cell.authorButton.setTitle(savedQuotes[indexPath.row].quoteModel.quoteAuthor, for: .normal)
+        
+        cell.authorButton.setTitle(savedQuotes[indexPath.row].quote!.quoteModel.quoteAuthor, for: .normal)
         cell.authorButton.tag = indexPath.row
         
         cell.tagsView.removeAllTags()
-        cell.tagsView.addTags(savedQuotes[indexPath.row].quoteModel.quoteTags)
+        cell.tagsView.addTags(savedQuotes[indexPath.row].quote!.quoteModel.quoteTags)
         cell.tagsView.delegate = self
         
         cell.likeButton.tag = indexPath.row
         
         return cell
+    }
+    
+    func setupTableView() {
+        savedQuotesTableView.delegate = self
+        savedQuotesTableView.dataSource = self
     }
 }
 

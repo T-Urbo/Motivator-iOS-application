@@ -9,22 +9,20 @@ import UIKit
 
 class SideMenuViewController: UIViewController {
 
-    @IBOutlet var sideMenuBackgroundView: UIView!
+    @IBOutlet weak var sideMenuBackgroundView: UIView!
     @IBOutlet weak var searchQuotesButton: UIButton!
     @IBOutlet weak var addQuoteButton: UIButton!
     @IBOutlet weak var savedContentButton: UIButton!
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupSideMenu()
-        
+        print("sidemenu viewDidLoad")
     }
     
-    private func setupSideMenu() {
-        self.sideMenuBackgroundView.layer.cornerRadius = 20
-        self.sideMenuBackgroundView.clipsToBounds = true
-        
-    }
+//    private func setupSideMenu() {
+//        self.sideMenuBackgroundView.layer.cornerRadius = 20
+//        self.sideMenuBackgroundView.clipsToBounds = true
+//
+//    }
 }

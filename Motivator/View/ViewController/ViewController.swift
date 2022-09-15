@@ -9,13 +9,23 @@ class ViewController: UIViewController, TagListViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    //    @IBOutlet weak var sideMenuView: UIView!
     
-    var quoteController = QuoteController()
+    public var quoteController = QuoteController()
     public var quoteViewModel = QuoteViewModel()
-    var tempTagsArray = [String]()
-    var savedAuthorsArray: [Author] = [Author]()
-    private var sideMenuViewController: SideMenuViewController!
+    public var tempTagsArray = [String]()
+    public var savedAuthorsArray: [Author] = [Author]()
+    private var sideMenuViewController =  SideMenuViewController()
+    private var sideMenu: SideMenuNavigationController?
+    
+    
+    var selfNavigationController: UINavigationController?
+    
+    public enum MenuState {
+        case opened
+        case closed
+    }
+    
+    private var menuState: MenuState = .closed
     
     lazy var coreDataService = CoreDataService()
     let disposeBag = DisposeBag()
@@ -26,7 +36,6 @@ class ViewController: UIViewController, TagListViewDelegate {
     let nib = UINib(nibName: "QuoteCellViewModel", bundle: nil)
     let cellId = "QuoteCellViewModelid"
     
-    var sideMenu = SideMenuViewController()
     var revealSideMenuOnTop: Bool = true
     
     var isLiked: Bool = false
@@ -38,7 +47,6 @@ class ViewController: UIViewController, TagListViewDelegate {
         setupTableView()
 //        setupSideMenu()
             
-        
         quoteViewModel.getQuote(from: url) { (quote, error) in
             if quote != nil {
                 DispatchQueue.main.async {
@@ -48,19 +56,22 @@ class ViewController: UIViewController, TagListViewDelegate {
         }
     }
     
-    @IBAction func onMenuButtonClick(_ sender: Any) {
-        
-    }
-    
-    
-    func setupSideMenu() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        self.sideMenuViewController = storyboard.instantiateViewController(withIdentifier: "sidemenuvc") as? SideMenuViewController
-//        self.sideMenuViewController.defaultHighlightedCell = 0 // Default Highlighted Cell
-//        self.sideMenuViewController.delegate = self
-        view.insertSubview(self.sideMenuViewController!.view, at: self.revealSideMenuOnTop ? 2 : 0)
-        addChild(self.sideMenuViewController!)
-        self.sideMenuViewController!.didMove(toParent: self)
+    @IBAction func onMenuButtonClick(_ sender: UIBarButtonItem) {
+        present(sideMenu!, animated: true)
+            if(sideMenu!.isBeingPresented) {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: .transitionCrossDissolve, animations: {
+                    sender.image = UIImage(systemName: "xmark")
+                }, completion: nil)
+                menuState = .closed
+                print("opened")
+            }
+            if(sideMenu!.isBeingDismissed) {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: .transitionCrossDissolve, animations: {
+                    sender.image = UIImage(systemName: "line.3.horizontal")
+                }, completion: nil)
+                menuState = .opened
+                print("closed")
+            }
     }
 }
 
@@ -111,7 +122,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupNavigationController() {
-//        self.navigationController?.navigationBar.backgroundColor = .systemBlue
+        sideMenu = SideMenuNavigationController(rootViewController: SideMenuListController(with: ["Saved"]))
+        sideMenu?.tabBarItem.image = UIImage(systemName: "line.3.horizontal")
+        sideMenu?.leftSide = true
+        
+        
+        SideMenuManager.default.leftMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
     }
     
     func setupTableView() {
@@ -173,19 +190,20 @@ extension ViewController: QuoteCellViewModelDelegate {
     func onLikeButtonClick(_ sender: UIButton) {
         print("BUTTON WAS TAPPED DELEGATE!!!: \(sender.tag)")
         isLiked = !isLiked
-        let savedQuote = CoreDataQuoteModel(quoteModel: quoteViewModel.quotes[sender.tag])
-        
-        print(savedQuote.quoteModel)
+        let newSavedQuote = SavedQuote(context: coreDataService.viewContext)
+        newSavedQuote.quote?.quoteModel = quoteViewModel.quotes[sender.tag]
         
         switch isLiked {
         case true:
             do {
                 try coreDataService.viewContext.save()
             } catch {
-                print(error)
+                print("Liked quote saving error: \(error.localizedDescription)")
             }
         case false:
-            print("FALSE!")
+            do {
+                coreDataService.viewContext.delete(newSavedQuote)
+            }
         }
     }
     
@@ -200,4 +218,13 @@ extension ViewController: QuoteCellViewModelDelegate {
         }
     }
     
+}
+
+extension ViewController: SideMenuListControllerDelegate {
+    func didSelectMenuItem(named: String) {
+        print(named)
+        if let savedquotesvc = storyboard?.instantiateViewController(identifier: "savedquotesvc") as? SavedQuotesViewController {
+        self.present(savedquotesvc, animated: true, completion: nil)
+    }
+}
 }

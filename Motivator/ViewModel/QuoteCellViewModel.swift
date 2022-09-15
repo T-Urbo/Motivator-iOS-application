@@ -27,7 +27,7 @@ class QuoteCellViewModel: UITableViewCell, TagListViewDelegate {
     @IBOutlet weak var tagsView: TagListView!
     @IBOutlet weak var likeButton: UIButton!
     
-    var isLiked: Bool = false
+    private var isLiked: Bool = false
     private let anumationDuration: Double = 0.1
     private var animationScale: CGFloat {
         isLiked ? 0.7 : 1.3
@@ -48,8 +48,6 @@ class QuoteCellViewModel: UITableViewCell, TagListViewDelegate {
         contentLabel.isUserInteractionEnabled = true
         contentLabel.addGestureRecognizer(doubleTap)
     }
-    
-    // MARK: - Quote like function
     
     @IBAction func onLikeButtonClick(_ sender: Any) {
         isLiked = !isLiked

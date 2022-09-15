@@ -27,10 +27,6 @@ class CoreDataService {
         }
     }
     
-    func fetchItems() {
-        
-    }
-    
     func saveDataToMemory() {
         
     }
